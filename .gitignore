@@ -1,0 +1,10 @@
+
+.DS_Store
+/node_modules
+*.jsonl
+*.log
+*BAK*
+
+webchat.js
+/weather
+/plugins/place*.js

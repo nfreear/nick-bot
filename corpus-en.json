@@ -3,6 +3,21 @@
   "locale": "en-US",
   "data": [
     {
+      "intent": "weather.inPlaceName",
+      "utterances": [
+        "what's the weather like in @place",
+        "how's the weather looking in @place",
+        "give me the forecast for @place"
+      ]
+    }, {
+      "intent": "joke.chucknorris",
+      "utterances": [
+        "tell me a chuck norris fact",
+        "tell me a joke about chuck norris",
+        "say a chuck norris joke",
+        "some chuck norris fact"
+      ]
+    }, {
       "intent": "agent.whereami",
       "utterances": [
         "where am i",

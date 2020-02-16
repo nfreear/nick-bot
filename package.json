@@ -1,18 +1,26 @@
 {
-  "name": "08.webchat",
+  "private": true,
+  "name": "@nfreear/nick-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "An experimental Chat-bot, built on `NLP.js`",
   "X-source": "https://github.com/jesus-seijas-sp/nlpjs-examples/tree/master/01.quickstart/08.webchat",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "semistandard",
+    "x-test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "NDF",
+  "license": "?",
   "dependencies": {
     "@nlpjs/basic": "^4.0.1",
     "@nlpjs/directline-connector": "^4.0.1",
     "@nlpjs/express-api-server": "^4.0.1",
-    "@nlpjs/lang-es": "^4.0.1"
+    "@nlpjs/lang-es": "^4.0.1",
+    "@nlpjs/ner": "^4.1.0",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "semistandard": "^14.2.0"
   }
 }

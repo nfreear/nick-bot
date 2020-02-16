@@ -6,6 +6,8 @@ console.say "Say something!"
 
 ## onIntent(weather.inPlaceName)
 placenameEntity
+ner-en-process
+weatherIntent
 ->output.text
 
 ## onIntent(joke.chucknorris)

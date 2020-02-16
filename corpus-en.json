@@ -5,9 +5,10 @@
     {
       "intent": "weather.inPlaceName",
       "utterances": [
-        "what's the weather like in @place",
-        "how's the weather looking in @place",
-        "give me the forecast for @place"
+        "what's the weathe like in London?",
+        "what's the weather like in %place%",
+        "how's the weather looking in %place%",
+        "give me the forecast for %place%"
       ]
     }, {
       "intent": "joke.chucknorris",

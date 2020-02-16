@@ -8,7 +8,21 @@
       ]
     },
     "ner": {
-      "threshold": 0.8
+      "threshold": 0.8,
+      "rules": {
+        "en": {
+          "placeName": {
+            "name": "placeName",
+            "type": "trim",
+            "rules": [ {
+                "type": "after",
+                "words": [ "in", "for" ],
+                "options": {}
+              }
+            ]
+          }
+        }
+      }
     },
     "console": {
       "debug": true

@@ -4,11 +4,16 @@
 nlp.train
 console.say "Say something!"
 
+## x-ner-trim-only
+console.say "x-ner-trim-only !"
+
+## ner-process
+console.say "ner-process !"
+
 ## onIntent(weather.inPlaceName)
 placenameEntity
-ner-en-process
 weatherIntent
-->output.text
+output.text
 
 ## onIntent(joke.chucknorris)
 // compiler=javascript

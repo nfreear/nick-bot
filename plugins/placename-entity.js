@@ -7,7 +7,9 @@
  */
 
 const { defaultContainer, Clonable } = require('@nlpjs/core');
-const { Ner } = require('@nlpjs/ner');
+const {
+   Ner, ExtractorTrim, ExtractorEnum, ExtractorRegex, ExtractorBuiltin
+} = require('@nlpjs/ner');
 
 const fs = require('fs');
 const path = require('path');
@@ -28,28 +30,27 @@ class PlacenameEntity extends Clonable {
   }
 
   initNerManager() {
-    this.ner = new Ner(); // Was: NerManager(); // { threshold: 0.8 }
+    const ner = this.ner = this.container.get('ner');
+    // this.ner = new Ner(); // Was: NerManager(); // { threshold: 0.8 }
 
-    this.ner.addAfterCondition('en', 'placeName', 'in');
-    this.ner.addAfterCondition('en', 'placeName', 'for');
+    ner.use(ExtractorTrim);
+    ner.use(ExtractorEnum);
+    ner.use(ExtractorRegex);
+    ner.use(ExtractorBuiltin);
 
-    /* const inLocationEntity = this.nerManager.addNamedEntity('inLocationEntity', 'trim');
-
-    inLocationEntity.addAfterCondition('en', 'in');
-    inLocationEntity.addAfterFirstCondition('en', 'for'); */
+    ner.addAfterCondition('en', 'placeName', 'in');
+    ner.addAfterCondition('en', 'placeName', 'for');
 
     const logger = this.container.get('logger');
     // logger.info(this.ner.toJSON());
   }
 
   async placenameEntity(input) {
-    input.threshold = 0.8;
+    const result = await this.ner.process(input);
 
-    // input.x_entity = this.ner.getEntitiesFromUtterance('en', input.utterance);
-    input.x_entity = await this.ner.process(input);
-    // input.x_entity = await this.nerManager.findEntities(input.utterance); // .then(result => input.x_entity = result);
+    this.logToFile(result);
 
-    return input;
+    return result;
   }
 
   async run(input) {
@@ -59,6 +60,14 @@ class PlacenameEntity extends Clonable {
     return await this.placenameEntity(input);
   }
 
+  logToFile(input) {
+    const PATH = path.join(__dirname, '..', 'placename-entity.jsonl');
+    fs.writeFile(PATH, JSON.stringify([
+      'PlacenameEntity', new Date().toISOString(), input
+    ], null, 2), (err) => {
+      if (err) console.error('Error.', err);
+    });
+  }
 }
 
 module.exports = PlacenameEntity;
@@ -68,29 +77,19 @@ module.exports = PlacenameEntity;
 
   settings: {
       "tag": "ner"
-    }
-    rules: {
-      "en": {
-        "placeName": {
-          "name": "placeName",
-          "type": "trim",
-          "rules": [
-            {
-              "type": "after",
-              "words": [
-                "in"
-              ],
-              "options": {}
-            },
-            {
-              "type": "after",
-              "words": [
-                "for"
-              ],
-              "options": {}
-            }
-          ]
-        }
+  }
+  "rules": {
+    "en": {
+      "placeName": {
+        "name": "placeName",
+        "type": "trim",
+        "rules": [ {
+            "type": "after",
+            "words": [ "in", "for" ],
+            "options": {}
+          }
+        ]
       }
     }
+  }
 */

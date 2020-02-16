@@ -39,6 +39,14 @@ class WeatherIntent extends Clonable {
 
     input.text = input.answer = 'It looks like rain :( ! XX [Link](#hi)';
 
+    /** @TODO Error - input 'missing' after 'ner-process' ?! */
+    /* Promise.resolve(input)
+    .then(input => {
+      this.logToFile(input);
+
+      input.text = input.answer = 'It looks like rain :( ! XX [Link](#hi)';
+    }); */
+
     return input;
   }
 

@@ -1,5 +1,7 @@
 const { dockStart } = require('@nlpjs/basic');
 
 (async () => {
-  await dockStart();
+  const dock = await dockStart();
+
+  console.log('Dock:', dock);
 })();

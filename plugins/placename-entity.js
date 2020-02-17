@@ -8,20 +8,19 @@
 
 const { defaultContainer, Clonable } = require('@nlpjs/core');
 const {
-   Ner, ExtractorTrim, ExtractorEnum, ExtractorRegex, ExtractorBuiltin
+  ExtractorTrim, ExtractorEnum, ExtractorRegex, ExtractorBuiltin
 } = require('@nlpjs/ner');
 
 const fs = require('fs');
 const path = require('path');
 
 class PlacenameEntity extends Clonable {
-
-  constructor(settings = {}, container) {
+  constructor (settings = {}, container) {
     super({
-        settings: {},
-        container: settings.container || container || defaultContainer,
-      },
-      container
+      settings: {},
+      container: settings.container || container || defaultContainer
+    },
+    container
     );
 
     this.initNerManager();
@@ -29,7 +28,7 @@ class PlacenameEntity extends Clonable {
     this.name = 'placenameEntity';
   }
 
-  initNerManager() {
+  initNerManager () {
     const ner = this.ner = this.container.get('ner');
     // this.ner = new Ner(); // Was: NerManager(); // { threshold: 0.8 }
 
@@ -41,11 +40,24 @@ class PlacenameEntity extends Clonable {
     ner.addAfterCondition('en', 'placeName', 'in');
     ner.addAfterCondition('en', 'placeName', 'for');
 
+    /* ner.container.registerPipeline(
+      'x-ner-trim-only',
+      [
+        '.decideRules',
+        // 'extract-enum',
+        // 'extract-regex',
+        'extract-trim',
+        // 'extract-builtin',
+        // '.reduceEdges',
+      ],
+      false
+    ); */
+
     const logger = this.container.get('logger');
-    // logger.info(this.ner.toJSON());
+    logger.info('PlacenameEntity.init() !', this); // this.ner.toJSON());
   }
 
-  async placenameEntity(input) {
+  async placenameEntity (input) {
     const result = await this.ner.process(input);
 
     this.logToFile(result);
@@ -53,15 +65,17 @@ class PlacenameEntity extends Clonable {
     return result;
   }
 
-  async run(input) {
-    const logger = this.container.get('logger');
-    logger.info(`PlaceNameEntity.run() !`);
+  async run (input) {
+    this.logToFile(input, 'raw-input.jsonl');
 
-    return await this.placenameEntity(input);
+    const logger = this.container.get('logger');
+    logger.info('PlaceNameEntity.run() !');
+
+    return this.placenameEntity(input);
   }
 
-  logToFile(input) {
-    const PATH = path.join(__dirname, '..', 'placename-entity.jsonl');
+  logToFile (input, fileName = 'placename-entity.jsonl') {
+    const PATH = path.join(__dirname, '..', fileName);
     fs.writeFile(PATH, JSON.stringify([
       'PlacenameEntity', new Date().toISOString(), input
     ], null, 2), (err) => {
@@ -71,7 +85,6 @@ class PlacenameEntity extends Clonable {
 }
 
 module.exports = PlacenameEntity;
-
 
 /* Should these 'rules' go in 'conf.json' ??
 

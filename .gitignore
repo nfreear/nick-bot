@@ -5,6 +5,7 @@
 *.log
 *BAK*
 
+/test
 webchat.js
 /weather
 # /plugins/place*.js

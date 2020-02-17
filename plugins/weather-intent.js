@@ -8,24 +8,25 @@
  * @see  https://github.com/axa-group/nlp.js/tree/master/examples/01-container
  */
 
+// const SAMPLE_WEATHER = require('../data/openweathermap.org-sample-data.json');
+
 const { defaultContainer, Clonable } = require('@nlpjs/core');
 const fs = require('fs');
 const path = require('path');
 
 class WeatherIntent extends Clonable {
-
-  constructor(settings = {}, container) {
+  constructor (settings = {}, container) {
     super({
-        settings: {},
-        container: settings.container || container || defaultContainer,
-      },
-      container
+      settings: {},
+      container: settings.container || container || defaultContainer
+    },
+    container
     );
 
     this.name = 'weatherIntent';
   }
 
-  logToFile(input) {
+  logToFile (input) {
     const PATH = path.join(__dirname, '..', 'weather-intent.jsonl');
     fs.writeFile(PATH, JSON.stringify([
       'WeatherIntent', new Date().toISOString(), input
@@ -34,7 +35,7 @@ class WeatherIntent extends Clonable {
     });
   }
 
-  weather(input) {
+  weather (input) {
     this.logToFile(input);
 
     input.text = input.answer = 'It looks like rain :( ! XX [Link](#hi)';
@@ -55,9 +56,9 @@ class WeatherIntent extends Clonable {
     return input;
   } */
 
-  run(input) {
+  run (input) {
     const logger = this.container.get('logger');
-    logger.info(`WeatherIntent.run() !`);
+    logger.info('WeatherIntent.run() !');
 
     this.logToFile(input);
 

@@ -36,7 +36,7 @@ class WeatherIntent extends Clonable {
   }
 
   weather (input) {
-    this.logToFile(input);
+    // this.logToFile(input);
 
     input.text = input.answer = 'It looks like rain :( ! XX [Link](#hi)';
 
@@ -47,6 +47,8 @@ class WeatherIntent extends Clonable {
 
       input.text = input.answer = 'It looks like rain :( ! XX [Link](#hi)';
     }); */
+
+    this.logToFile(input);
 
     return input;
   }
@@ -60,7 +62,7 @@ class WeatherIntent extends Clonable {
     const logger = this.container.get('logger');
     logger.info('WeatherIntent.run() !');
 
-    this.logToFile(input);
+    // this.logToFile(input);
 
     return this.weather(input); // this.join(input.splitted ? input : { splitted: input });
   }

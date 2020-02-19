@@ -8,6 +8,7 @@ console.say "Say something!"
 console.say "x-ner-trim-only !"
 
 ## onIntent(weather.inPlaceName)
+x-normalize
 placenameEntity
 weatherIntent
 ->output.text

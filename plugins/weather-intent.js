@@ -10,11 +10,9 @@
 
 // const SAMPLE_WEATHER = require('../data/openweathermap.org-sample-data.json');
 
-const { defaultContainer, Clonable } = require('@nlpjs/core');
-const fs = require('fs');
-const path = require('path');
+const { PluginBase, defaultContainer } = require('../src/plugin-base');
 
-class WeatherIntent extends Clonable {
+class WeatherIntent extends PluginBase {
   constructor (settings = {}, container) {
     super({
       settings: {},
@@ -24,15 +22,6 @@ class WeatherIntent extends Clonable {
     );
 
     this.name = 'weatherIntent';
-  }
-
-  logToFile (input) {
-    const PATH = path.join(__dirname, '..', 'weather-intent.jsonl');
-    fs.writeFile(PATH, JSON.stringify([
-      'WeatherIntent', new Date().toISOString(), input
-    ], null, 2), (err) => {
-      if (err) console.error('Error.', err);
-    });
   }
 
   weather (input) {

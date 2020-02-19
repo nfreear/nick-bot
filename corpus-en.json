@@ -7,6 +7,7 @@
       "utterances": [
         "what's the weather like in london?",
         "what's the weather like in %place%",
+        "whats the weather like in %place%",
         "what's the weather doing in %place%",
         "how's the weather looking in %place%",
         "what's the forecast for %place%",

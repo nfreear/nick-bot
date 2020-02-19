@@ -5,9 +5,9 @@
  * @see  https://github.com/axa-group/nlp.js/blob/master/docs/v4/core/normalizer.md
  */
 
-const { defaultContainer, Clonable } = require('@nlpjs/core');
+const { PluginBase, defaultContainer } = require('../src/plugin-base');
 
-class XNormalize extends Clonable {
+class XNormalize extends PluginBase {
   constructor (settings = {}, container) {
     super({
       settings: {},
@@ -20,16 +20,28 @@ class XNormalize extends Clonable {
   }
 
   removePunctuation (text) {
-    return text.replace(/[^\w ']/g, '');
+    return text.replace(/[^\w ']/g, '').trim();
   }
 
-  normalize (input) {
+  trimEndPunctuation (text) {
+    return text.replace(/[^\w ']$/g, '').trim();
+  }
+
+  normalizeUtterance (input) {
     const normalizer = this.container.get('normalize');
 
     const output = normalizer.run({ text: input.utterance, locale: input.locale });
 
-    input.originalUtterance = input.utterance;
-    input.utterance = this.removePunctuation(output.text);
+    // input.originalUtterance = input.utterance;
+    input.normalizedUtterance = this.removePunctuation(output.text);
+
+    return input;
+  }
+
+  normalizeEntities (input) {
+    input.entities.forEach(entity => {
+      entity.normalizedText = this.trimEndPunctuation(entity.utteranceText);
+    });
 
     return input;
   }
@@ -38,7 +50,8 @@ class XNormalize extends Clonable {
     const logger = this.container.get('logger');
     logger.info('XNormalize.run() !');
 
-    return this.normalize(input);
+    input = this.normalizeUtterance(input);
+    return this.normalizeEntities(input);
   }
 }
 

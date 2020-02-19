@@ -6,15 +6,12 @@
  * @author NDF, 15-Feb-2020.
  */
 
-const { defaultContainer, Clonable } = require('@nlpjs/core');
+const { PluginBase, defaultContainer } = require('../src/plugin-base');
 const {
   ExtractorTrim, ExtractorEnum, ExtractorRegex, ExtractorBuiltin
 } = require('@nlpjs/ner');
 
-const fs = require('fs');
-const path = require('path');
-
-class PlacenameEntity extends Clonable {
+class PlacenameEntity extends PluginBase {
   constructor (settings = {}, container) {
     super({
       settings: {},
@@ -52,8 +49,7 @@ class PlacenameEntity extends Clonable {
       false
     ); */
 
-    const logger = this.container.get('logger');
-    logger.info('PlacenameEntity.init() !', this); // this.ner.toJSON());
+    this.logger.info('PlacenameEntity.init() !', this); // this.ner.toJSON());
   }
 
   async placenameEntity (input) {
@@ -64,22 +60,19 @@ class PlacenameEntity extends Clonable {
     return result;
   }
 
-  async run (input) {
+  // Async / await does not work in a pipeline ?!
+  async asyncRun (input) {
     this.logToFile(input, 'raw-input.jsonl');
 
-    const logger = this.container.get('logger');
-    logger.info('PlaceNameEntity.run() !');
+    this.logger.info('PlaceNameEntity.run() !');
 
     return this.placenameEntity(input);
   }
 
-  logToFile (input, fileName = 'placename-entity.jsonl') {
-    const PATH = path.join(__dirname, '..', fileName);
-    fs.writeFile(PATH, JSON.stringify([
-      'PlacenameEntity', new Date().toISOString(), input
-    ], null, 2), (err) => {
-      if (err) console.error('Error.', err);
-    });
+  run (input) {
+    this.logger.info('PlacenameEntity no-op!');
+
+    return input;
   }
 }
 

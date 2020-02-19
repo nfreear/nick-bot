@@ -38,6 +38,15 @@
         "give me a quote"
       ]
     }, {
+      "intent": "embed.youtube",
+      "utterances": [
+        "give me a video",
+        "get a video"
+      ],
+      "answers": [
+        { "answer": "['QI' on YouTube](https://youtube.com/embed/j7uFSdBVqxo#_EMBED_ME_)" }
+      ]
+    }, {
       "intent": "joke.chucknorris",
       "utterances": [
         "tell me a chuck norris fact",

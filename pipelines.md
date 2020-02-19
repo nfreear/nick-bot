@@ -19,7 +19,7 @@ disabilityClassifier
 agentVersion
 ->output.text
 
-## onIntent(quote)
+## onIntent(quote.of.the.day)
 // compiler=javascript
 const resp = request.get('https://quotes.rest/qod?language=en');
 if (resp && resp.contents.quotes[ 0 ]) {

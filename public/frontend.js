@@ -18,7 +18,6 @@ const store = WebChat.createStore(
       event.data = action.payload.activity;
       window.dispatchEvent(event);
     }
-
     // console.debug('> Action:', action)
 
     return next(action);
@@ -50,16 +49,16 @@ window.addEventListener('webchatincomingactivity', ({ data }) => {
 
       if ($embeddable) {
         const url = $embeddable.getAttribute('href');
+        const text = $embeddable.innerText;
         const $container = $embeddable.parentElement;
 
-        $container.innerHTML += `<iframe src="${url}" allowfullscreen>[ Loading ]</iframe>`;
+        $container.innerHTML += `<iframe src="${url}" title="Embed: ${text}" allowfullscreen ></iframe>`;
 
         console.debug('> Embed:', $container, url);
       }
 
       console.debug(messageText, $link, $lastItem.innerText);
     }, 100);
-
   }
 });
 

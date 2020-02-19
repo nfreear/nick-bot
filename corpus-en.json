@@ -26,25 +26,21 @@
       ]
     }, {
       "intent": "agent.version",
-      "utterances": [
-        "What version am i",
-        "What version are you"
-      ]
+      "utterances": [ "What version am i", "What version are you" ]
     }, {
-      "intent": "quote",
-      "utterances": [
-        "they said so",
-        "quote of the day",
-        "give me a quote"
-      ]
+      "intent": "quote.of.the.day",
+      "utterances": [ "they said so", "quote of the day", "give me a quote" ]
     }, {
       "intent": "embed.youtube",
-      "utterances": [
-        "give me a video",
-        "get a video"
-      ],
+      "utterances": [ "give me a video", "get a video", "show video", "youtube video", "show youtube" ],
       "answers": [
         { "answer": "['QI' on YouTube](https://youtube.com/embed/j7uFSdBVqxo#_EMBED_ME_)" }
+      ]
+    }, {
+      "intent": "embed.image",
+      "utterances": [ "get an image", "show an image" ],
+      "answers": [
+        { "answer": "[![White-tailed tropicbird](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/White-tailed_tropicbird.jpg/272px-White-tailed_tropicbird.jpg)](https://en.wikipedia.org/wiki/White-tailed_tropicbird)" }
       ]
     }, {
       "intent": "joke.chucknorris",

@@ -4,14 +4,27 @@
 nlp.train
 console.say "Say something!"
 
-## x-ner-trim-only
-console.say "x-ner-trim-only !"
-
 ## onIntent(weather.inPlaceName)
 x-normalize
 placenameEntity
 weatherIntent
 ->output.text
+
+## onIntent(disability.declare)
+x-normalize
+disabilityClassifier
+->output.text
+
+## onIntent(agent.version)
+agentVersion
+->output.text
+
+## onIntent(quote)
+// compiler=javascript
+const resp = request.get('https://quotes.rest/qod?language=en');
+if (resp && resp.contents.quotes[ 0 ]) {
+  input.answer = resp.contents.quotes[ 0 ].quote;
+}
 
 ## onIntent(joke.chucknorris)
 // compiler=javascript

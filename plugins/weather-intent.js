@@ -26,7 +26,7 @@ class WeatherIntent extends PluginBase {
 
   weather (input) {
     input.text = input.answer = 'It looks like rain :( ! XX [Link](#hi)';
-    input.answers.push({ answer: input.text });
+    // input.answers.push({ answer: input.text });
 
     this.logToFile(input);
 
@@ -39,9 +39,7 @@ class WeatherIntent extends PluginBase {
   } */
 
   run (input) {
-    const logger = this.container.get('logger');
-
-    logger.info('WeatherIntent.run() !');
+    this.logger.info('WeatherIntent.run() !');
 
     return this.weather(input); // this.join(input.splitted ? input : { splitted: input });
   }

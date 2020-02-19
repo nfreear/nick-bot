@@ -16,6 +16,28 @@
         "get the weather for %place%"
       ]
     }, {
+      "intent": "disability.declare",
+      "utterances": [
+        "I have a stammer",
+        "I have %disability%",
+        "I have a %disability%",
+        "I suffer from %disability%",
+        "I'm %disability%"
+      ]
+    }, {
+      "intent": "agent.version",
+      "utterances": [
+        "What version am i",
+        "What version are you"
+      ]
+    }, {
+      "intent": "quote",
+      "utterances": [
+        "they said so",
+        "quote of the day",
+        "give me a quote"
+      ]
+    }, {
       "intent": "joke.chucknorris",
       "utterances": [
         "tell me a chuck norris fact",
@@ -766,11 +788,11 @@
     {
       "intent": "user.angry",
       "utterances": [
-        "I'm angry",
-        "I'm furious",
-        "I'm enraged",
+        "XX- I'm angry",
+        "XX- I'm furious",
+        "XX- I'm enraged",
         "I'm being mad",
-        "I'm mad",
+        "XX- I'm mad",
         "I'm angry with you"
       ],
       "answers": [
@@ -811,7 +833,7 @@
       "intent": "user.busy",
       "utterances": [
         "I got work to do",
-        "I'm busy",
+        "XX- I'm busy",
         "I'm overloaded",
         "It working",
         "I got things to do"

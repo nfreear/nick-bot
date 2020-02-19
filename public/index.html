@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en-GB" data-bot-url="http://localhost:3000/directline">
   <head>
     <title>(Nick-bot) Web Chat: Full-featured bundle</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,18 +19,12 @@
     </style>
   </head>
   <body>
-    <div id="webchat" role="main"></div>
-    <script>
-         window.WebChat.renderWebChat(
-            {
-               directLine: window.WebChat.createDirectLine({
-                 domain: 'http://localhost:3000/directline',
-                 webSocket: false,
-               }),
-               userID: 'Jesús'
-            },
-            document.getElementById('webchat')
-         );
-    </script>
+    <div id="webchat" role="main" aria-label="Nick-bot">
+
+      <h1 class="wc-loading"> Nick-bot loading ... </h1>
+
+    </div>
+
+    <script type="module" src="./frontend.js"></script>
   </body>
 </html>

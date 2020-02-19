@@ -36,17 +36,8 @@ class WeatherIntent extends Clonable {
   }
 
   weather (input) {
-    // this.logToFile(input);
-
     input.text = input.answer = 'It looks like rain :( ! XX [Link](#hi)';
-
-    /** @TODO Error - input 'missing' after 'ner-process' ?! */
-    /* Promise.resolve(input)
-    .then(input => {
-      this.logToFile(input);
-
-      input.text = input.answer = 'It looks like rain :( ! XX [Link](#hi)';
-    }); */
+    input.answers.push({ answer: input.text });
 
     this.logToFile(input);
 
@@ -60,9 +51,8 @@ class WeatherIntent extends Clonable {
 
   run (input) {
     const logger = this.container.get('logger');
-    logger.info('WeatherIntent.run() !');
 
-    // this.logToFile(input);
+    logger.info('WeatherIntent.run() !');
 
     return this.weather(input); // this.join(input.splitted ? input : { splitted: input });
   }

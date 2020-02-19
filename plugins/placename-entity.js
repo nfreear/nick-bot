@@ -29,8 +29,7 @@ class PlacenameEntity extends Clonable {
   }
 
   initNerManager () {
-    const ner = this.ner = this.container.get('ner');
-    // this.ner = new Ner(); // Was: NerManager(); // { threshold: 0.8 }
+    const ner = this.ner = this.container.get('ner'); // Was: new Ner(); // Was: NerManager();
 
     ner.use(ExtractorTrim);
     ner.use(ExtractorEnum);

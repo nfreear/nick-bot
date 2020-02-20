@@ -54,10 +54,13 @@ function handleMessage(inputText) {
   const $text = $lastItem.querySelector('.markdown');
   const $link = $lastItem.querySelector('a[ href ]');
   const $image = $lastItem.querySelector('img');
+  const $embed = $lastItem.querySelector('a[ href *= _EMBED_ ]');
 
   tryEmbed($lastItem);
 
-  let speech = $link ? 'Link, ' : '';
+  let speech = '';
+  speech += $embed ? 'Embed, ' : '';
+  speech += $link ? 'Link, ' : '';
   speech += $image ? ('Image, ' + $image.getAttribute('alt')) : '';
   speech += $text.innerText;
 

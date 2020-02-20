@@ -1,32 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-GB" data-bot-url="http://localhost:3000/directline">
   <head>
+    <meta charset="utf-8" />
     <title> Nick-bot (Web Chat) </title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./webchat.js" data-src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
-    <style>
-      html,
-      body {
-        height: 100%;
-      }
-      body {
-        margin: 0;
-      }
-      #webchat {
-        height: 100%;
-        width: 100%;
-      }
-      #webchat * {
-        font-size: 1.1rem;
-      }
-      #webchat iframe {
-        border: 1px solid #888;
-        border-radius: .3rem;
-        display: block;
-        height: 160px;
-        width: 300px;
-      }
-    </style>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <div id="webchat" role="main" aria-label="Nick-bot">

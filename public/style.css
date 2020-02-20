@@ -1,0 +1,31 @@
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
+
+#webchat {
+  height: 100%;
+  width: 100%;
+}
+
+#webchat * {
+  font-size: 1.1rem;
+}
+
+#webchat iframe {
+  border: 1px solid #888;
+  border-radius: .3rem;
+  display: block;
+  height: 160px;
+  width: 300px;
+  margin: .2rem 0;
+}
+
+#webchat iframe[ src *= radio ] {
+  height: 95px;
+  width: 360px;
+}

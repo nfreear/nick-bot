@@ -48,7 +48,7 @@ class DisabilityClassifier extends PluginBase {
 
     this.logToFile(this.ner.toJSON(), 'disability-classifier-ner-rules.jsonl');
 
-    this.logger.info('DisabilityClassifier.init() !', this);
+    this.logger.info('DisabilityClassifier.init() !'); // Was: , this)
   }
 
   run (input) {

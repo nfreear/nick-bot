@@ -34,13 +34,15 @@
       "intent": "embed.youtube",
       "utterances": [ "give me a video", "get a video", "show video", "youtube video", "show youtube" ],
       "answers": [
-        { "answer": "['QI' on YouTube](https://youtube.com/embed/j7uFSdBVqxo#_EMBED_ME_)" }
+        { "answer": "[Heart 'Crazy on you' on Y-T](https://youtube.com/embed/RBq_THTWNM4#_EMBED_)" },
+        { "answer": "[Katie Melua on YouTube](https://youtube.com/embed/056TmKMaTCY#_EMBED_)" },
+        { "answer": "['QI' on YouTube](https://youtube.com/embed/j7uFSdBVqxo#_EMBED_)" }
       ]
     }, {
       "intent": "embed.image",
       "utterances": [ "get an image", "show an image" ],
       "answers": [
-        { "answer": "[![White-tailed tropicbird](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/White-tailed_tropicbird.jpg/272px-White-tailed_tropicbird.jpg)](https://en.wikipedia.org/wiki/White-tailed_tropicbird)" }
+        { "answer": "[![White-tailed tropicbird - Wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/White-tailed_tropicbird.jpg/272px-White-tailed_tropicbird.jpg)](https://en.wikipedia.org/wiki/White-tailed_tropicbird)" }
       ]
     }, {
       "intent": "joke.chucknorris",

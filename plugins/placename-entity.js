@@ -49,7 +49,7 @@ class PlacenameEntity extends PluginBase {
       false
     ); */
 
-    this.logger.info('PlacenameEntity.init() !', this); // this.ner.toJSON());
+    // this.logger.info('PlacenameEntity.init() !', this);
   }
 
   async placenameEntity (input) {

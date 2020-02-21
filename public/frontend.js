@@ -5,9 +5,11 @@
 
 const WebChat = window.WebChat;
 const Synth = window.speechSynthesis;
+const Utterance = window.SpeechSynthesisUtterance;
 const Event = window.Event;
 const ChatElem = document.querySelector('#webchat');
-const useTts = window.location.search.match(/tts=1/);
+const useTts = param(/tts=(1)/);
+const vox = param(/vox=(Alex|\w+)/)
 
 // We are adding a new middleware to customize the behavior of DIRECT_LINE/INCOMING_ACTIVITY.
 // https://github.com/microsoft/BotFramework-WebChat/tree/master/samples/04.api/c.incoming-activity-event
@@ -45,11 +47,11 @@ window.addEventListener('webchatincomingactivity', ({ data }) => {
   }
 });
 
-function isBotMessage(data) {
+function isBotMessage (data) {
   return data.from.role === 'bot' && data.type === 'message';
 }
 
-function handleMessage(inputText) {
+function handleMessage (inputText) {
   const $lastItem = ChatElem.querySelector('ul[ aria-live ] li:last-child');
   const $text = $lastItem.querySelector('.markdown');
   const $link = $lastItem.querySelector('a[ href ]');
@@ -69,7 +71,7 @@ function handleMessage(inputText) {
   speak(speech);
 }
 
-function tryEmbed($lastItem) {
+function tryEmbed ($lastItem) {
   const $embeddable = $lastItem.querySelector('a[ href *= _EMBED_ ]');
 
   if ($embeddable) {
@@ -83,11 +85,21 @@ function tryEmbed($lastItem) {
   }
 }
 
-function speak(inputText) {
+function speak (inputText) {
   if (useTts) {
-    const utterThis = new SpeechSynthesisUtterance(`${inputText}`); // Was: `Bot says:`
+    const utterThis = new Utterance(`${inputText}`); // Was: `Bot says:`
+    if (vox) {
+      const voices = Synth.getVoices();
+      // if (voices[ i ].name === vox)
+      // utterThis.voice = vox;
+    }
     Synth.speak(utterThis);
   }
+}
+
+function param (regex, def = null) {
+  const matches = window.location.href.match(regex);
+  return matches ? matches[1] : def;
 }
 
 document.querySelector('#webchat > *').focus();

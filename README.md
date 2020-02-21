@@ -15,8 +15,11 @@ npm run frontend
 ## Usage
 
 > " Hello "
+>
 > " What's the weather doing in Cranfield? "
+>
 > " Give me the radio "
+>
 > " I have a stammer "
 
 [nlp.js]: https://github.com/axa-group/nlp.js "NLP.js version 4.x"

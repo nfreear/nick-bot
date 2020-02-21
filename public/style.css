@@ -25,7 +25,17 @@ body {
   margin: .2rem 0;
 }
 
-#webchat iframe[ src *= radio ] {
+#webchat iframe[ src *= 'radio.net' ] {
   height: 95px;
   width: 360px;
+}
+
+#webchat img {
+  max-height: 280px;
+  object-fit: contain;
+  object-position: top left;
+}
+
+#webchat img[ src *= Radiogarden ] {
+  max-height: 170px;
 }

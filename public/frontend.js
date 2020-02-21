@@ -9,7 +9,7 @@ const Utterance = window.SpeechSynthesisUtterance;
 const Event = window.Event;
 const ChatElem = document.querySelector('#webchat');
 const useTts = param(/tts=(1)/);
-const vox = param(/vox=(Alex|\w+)/)
+const vox = param(/vox=(Alex|\w+)/);
 
 // We are adding a new middleware to customize the behavior of DIRECT_LINE/INCOMING_ACTIVITY.
 // https://github.com/microsoft/BotFramework-WebChat/tree/master/samples/04.api/c.incoming-activity-event
@@ -63,10 +63,10 @@ function handleMessage (inputText) {
   let speech = '';
   speech += $embed ? 'Embed, ' : '';
   speech += $link ? 'Link, ' : '';
-  speech += $image ? ('Image, ' + $image.getAttribute('alt')) : '';
+  speech += $image ? `Image: ${$image.getAttribute('alt')}, ` : '';
   speech += $text.innerText;
 
-  console.debug('Speak:', speech, inputText, $link);
+  console.debug(`Speak: "${speech}"`, inputText, $link);
 
   speak(speech);
 }
@@ -89,7 +89,7 @@ function speak (inputText) {
   if (useTts) {
     const utterThis = new Utterance(`${inputText}`); // Was: `Bot says:`
     if (vox) {
-      const voices = Synth.getVoices();
+      // const voices = Synth.getVoices();
       // if (voices[ i ].name === vox)
       // utterThis.voice = vox;
     }

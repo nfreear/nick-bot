@@ -10,6 +10,11 @@ placenameEntity
 weatherIntent
 ->output.text
 
+## onIntent(embed.radio)
+x-normalize
+radioPlayer
+->output.text
+
 ## onIntent(disability.declare)
 x-normalize
 disabilityClassifier

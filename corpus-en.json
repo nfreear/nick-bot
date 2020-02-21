@@ -45,10 +45,21 @@
         { "answer": "[![White-tailed tropicbird - Wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/White-tailed_tropicbird.jpg/272px-White-tailed_tropicbird.jpg)](https://en.wikipedia.org/wiki/White-tailed_tropicbird)" }
       ]
     }, {
-      "intent": "embed.radio.2",
-      "utterances": [ "give me the radio", "bbc radio 2" ],
+      "intent": "embed.radio",
+      "utterances": [
+        "give me radio 1", "give me radio 2", "get radio 2", "BBC radio 2", "get me radio 3", "get BBC radio 6 music"
+      ]
+    }, {
+      "intent": "XX.embed.radio.2",
+      "utterances": [ "XX- give me the radio", "XX- bbc radio 2" ],
       "answers": [
         { "answer": "[BBC Radio 2 - Radio.net](https://www.radio.net/inc/microsite/?playerWidth=360px&playerHeight=92px&playerType=web_embedded&partnerLogo=null&partnerUrl=null&partnerBacklink=null&partnerName=null&popoutTitle=null&stations=null&listText=null&listSubtext=null&playerColor=61ce42&showFooter=null&token=null&playStation=bbcradio2&apikey=df04ff67dd3339a6fc19c9b8be164d5b5245ae93&popupWidth=null&popupHeight=null&autoplay=false&iframe=true#_EMBED_)"}
+      ]
+    }, {
+      "intent": "linkto.radio.garden",
+      "utterances": [ "radio garden", "give me radio garden" ],
+      "answers": [
+        { "answer": "[Heart MK - Radio.garden ![R.G](https://upload.wikimedia.org/wikipedia/commons/c/cf/Radiogarden.png)](https://radio.garden/listen/heartmk/ALV1T523#)"}
       ]
     }, {
       "intent": "joke.chucknorris",

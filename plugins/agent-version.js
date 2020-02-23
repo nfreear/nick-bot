@@ -30,7 +30,7 @@ class AgentVersion extends PluginBase {
     // Was: const NLPJS = PKG.dependencies[ '@nlpjs/basic' ];
     const NLPJS = LOCK.dependencies['@nlpjs/core'].version;
 
-    const answer = `I'm [${name} v${version}](${url}), using NLP.js v${NLPJS}.`;
+    const answer = `I'm a _Chat-bot_. ([${name} v${version}](${url}), _built on NLP.js v${NLPJS}_)`;
 
     input.text = input.answer = answer;
 

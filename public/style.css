@@ -13,7 +13,11 @@ body {
 }
 
 #webchat * {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+}
+
+#webchat small {
+  font-size: .95rem;
 }
 
 #webchat iframe {
@@ -38,4 +42,11 @@ body {
 
 #webchat img[ src *= Radiogarden ] {
   max-height: 170px;
+}
+
+#webchat a[ href *= 'action=' ] {
+  color: #aaa;
+  cursor: not-allowed;
+  font-size: .9rem;
+  text-decoration: none;
 }

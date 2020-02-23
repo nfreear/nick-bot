@@ -1,4 +1,6 @@
 {
+  "#": "NLP.js chat-bot configuration.",
+
   "pathPlugins": "./plugins",
   "settings": {
     "nlp": {

@@ -3,13 +3,13 @@
  * @see https://github.com/microsoft/BotFramework-WebChat/blob/master/docs/API.md
  */
 
+import { BotSpeechSynth } from './lib/bot-speech-synth.js';
+
 const WebChat = window.WebChat;
-const Synth = window.speechSynthesis;
-const Utterance = window.SpeechSynthesisUtterance;
 const Event = window.Event;
 const ChatElem = document.querySelector('#webchat');
-const useTts = param(/tts=(1)/);
-const vox = param(/vox=(Alex|\w+)/);
+
+const synth = new BotSpeechSynth();
 
 // We are adding a new middleware to customize the behavior of DIRECT_LINE/INCOMING_ACTIVITY.
 // https://github.com/microsoft/BotFramework-WebChat/tree/master/samples/04.api/c.incoming-activity-event
@@ -54,30 +54,50 @@ function isBotMessage (data) {
 function handleMessage (inputText) {
   const $lastItem = ChatElem.querySelector('ul[ aria-live ] li:last-child');
   const $text = $lastItem.querySelector('.markdown');
-  const $link = $lastItem.querySelector('a[ href ]');
-  const $image = $lastItem.querySelector('img');
-  const $embed = $lastItem.querySelector('a[ href *= _EMBED_ ]');
 
+  const action = tryAction($lastItem);
   tryEmbed($lastItem);
 
-  let speech = '';
-  speech += $embed ? 'Embed, ' : '';
-  speech += $link ? 'Link, ' : '';
-  speech += $image ? `Image: ${$image.getAttribute('alt')}, ` : '';
-  speech += $text.innerText;
+  synth.act($text, action);
 
-  console.debug(`Speak: "${speech}"`, inputText, $link);
+  synth.speak($lastItem, inputText);
+}
 
-  speak(speech);
+function tryAction ($lastItem) {
+  const $actLink = $lastItem.querySelector('a[ href *= "!action=" ]');
+
+  if ($actLink) {
+    $actLink.addEventListener('click', ev => {
+      ev.preventDefault();
+      window.alert('(action)');
+    });
+
+    const actMatches = $actLink.getAttribute('href').match(/action=([a-z.]+)(?:;([a-z]+)=(\w*))?/i);
+
+    if (actMatches) {
+      const action = {
+        action: actMatches[1],
+        paramName: actMatches[2] || null,
+        param: actMatches[3] || null
+      };
+      console.warn('Action:', action);
+
+      return action;
+    }
+  }
+  return {
+    action: null,
+    param: null
+  };
 }
 
 function tryEmbed ($lastItem) {
-  const $embeddable = $lastItem.querySelector('a[ href *= _EMBED_ ]');
+  const $embed = $lastItem.querySelector('a[ href *= _EMBED_ ]');
 
-  if ($embeddable) {
-    const url = $embeddable.getAttribute('href');
-    const text = $embeddable.innerText;
-    const $container = $embeddable.parentElement;
+  if ($embed) {
+    const url = $embed.getAttribute('href');
+    const text = $embed.innerText;
+    const $container = $embed.parentElement;
 
     $container.innerHTML += `<iframe src="${url}" title="Embed: ${text}" allowfullscreen ></iframe>`;
 
@@ -85,21 +105,9 @@ function tryEmbed ($lastItem) {
   }
 }
 
-function speak (inputText) {
-  if (useTts) {
-    const utterThis = new Utterance(`${inputText}`); // Was: `Bot says:`
-    if (vox) {
-      // const voices = Synth.getVoices();
-      // if (voices[ i ].name === vox)
-      // utterThis.voice = vox;
-    }
-    Synth.speak(utterThis);
-  }
-}
-
-function param (regex, def = null) {
+/* function param (regex, def = null) {
   const matches = window.location.href.match(regex);
   return matches ? matches[1] : def;
-}
+} */
 
 document.querySelector('#webchat > *').focus();

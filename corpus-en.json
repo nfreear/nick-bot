@@ -3,6 +3,15 @@
   "locale": "en-US",
   "data": [
     {
+      "intent": "speech.synthesis.on",
+      "utterances": [ "speech on", "unmute", "speech on voice karen", "umute vox alex", "tts on" ]
+    }, {
+      "intent": "speech.synthesis.off",
+      "utterances": [ "speech off", "mute", "tts off" ]
+    }, {
+      "intent": "speech.synthesis.listVoices",
+      "utterances": [ "list vox", "list voices", "get tts voices", "show voices" ]
+    }, {
       "intent": "weather.inPlaceName",
       "utterances": [
         "what's the weather like in london?",
@@ -26,10 +35,10 @@
       ]
     }, {
       "intent": "agent.version",
-      "utterances": [ "What version am i", "What version are you" ]
+      "utterances": [ "What version am i", "What version are you", "who are you", "who r u" ]
     }, {
       "intent": "quote.of.the.day",
-      "utterances": [ "they said so", "quote of the day", "give me a quote" ]
+      "utterances": [ "they said so", "quote of the day", "give me a quote", "qod" ]
     }, {
       "intent": "embed.youtube",
       "utterances": [ "give me a video", "get a video", "show video", "youtube video", "show youtube" ],
@@ -48,12 +57,6 @@
       "intent": "embed.radio",
       "utterances": [
         "give me radio 1", "give me radio 2", "get radio 2", "BBC radio 2", "get me radio 3", "get BBC radio 6 music"
-      ]
-    }, {
-      "intent": "XX.embed.radio.2",
-      "utterances": [ "XX- give me the radio", "XX- bbc radio 2" ],
-      "answers": [
-        { "answer": "[BBC Radio 2 - Radio.net](https://www.radio.net/inc/microsite/?playerWidth=360px&playerHeight=92px&playerType=web_embedded&partnerLogo=null&partnerUrl=null&partnerBacklink=null&partnerName=null&popoutTitle=null&stations=null&listText=null&listSubtext=null&playerColor=61ce42&showFooter=null&token=null&playStation=bbcradio2&apikey=df04ff67dd3339a6fc19c9b8be164d5b5245ae93&popupWidth=null&popupHeight=null&autoplay=false&iframe=true#_EMBED_)"}
       ]
     }, {
       "intent": "linkto.radio.garden",
@@ -91,7 +94,7 @@
         "tell me about yourself",
         "tell me about you",
         "what are you",
-        "who are you",
+        "XX- who are you",
         "I want to know more about you",
         "talk about yourself"
       ],

@@ -10,6 +10,18 @@ placenameEntity
 weatherIntent
 ->output.text
 
+## onIntent(speech.synthesis.on)
+speechControl
+->output.text
+
+## onIntent(speech.synthesis.off)
+speechControl
+->output.text
+
+## onIntent(speech.synthesis.listVoices)
+speechControl
+->output.text
+
 ## onIntent(embed.radio)
 x-normalize
 radioPlayer
@@ -28,7 +40,7 @@ agentVersion
 // compiler=javascript
 const resp = request.get('https://quotes.rest/qod?language=en');
 if (resp && resp.contents.quotes[ 0 ]) {
-  input.answer = resp.contents.quotes[ 0 ].quote;
+  input.answer = '"' + resp.contents.quotes[ 0 ].quote + '" via [TheSaidSo](https://theysaidso.com)';
 }
 
 ## onIntent(joke.chucknorris)

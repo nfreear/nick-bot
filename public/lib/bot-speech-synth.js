@@ -1,5 +1,5 @@
 /**
- * Browser speech synthesis (TTS).
+ * Browser speech synthesis (TTS), with "mute" / "unmute".
  *
  * @author  NDF, 23-Feb-2020.
  */
@@ -8,7 +8,7 @@ const Synth = window.speechSynthesis;
 const Utterance = window.SpeechSynthesisUtterance;
 const Query = window.location.search;
 
-const ESCAPE_KEY = 27;
+// const ESCAPE_KEY_CODE = 27;
 
 export class BotSpeechSynth {
   constructor () {
@@ -16,7 +16,7 @@ export class BotSpeechSynth {
     // this.voice;
 
     document.addEventListener('keydown', ev => {
-      if (ev.key === 'Escape') { // ev.keyCode === ESCAPE_KEY || 
+      if (ev.key === 'Escape') { // ev.keyCode === ESCAPE_KEY ||
         console.warn('Speech synth:', 'cancel', ev);
 
         Synth.cancel();

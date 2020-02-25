@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "@nfreear/nick-bot",
-  "version": "0.8.0-alpha",
+  "name": "nick-bot",
+  "version": "0.8.1",
   "description": "An experimental Chat-bot, built on `NLP.js`",
   "X-source": "https://github.com/jesus-seijas-sp/nlpjs-examples/tree/master/01.quickstart/08.webchat",
   "main": "index.js",

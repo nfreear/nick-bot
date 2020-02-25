@@ -22,6 +22,10 @@ speechControl
 speechControl
 ->output.text
 
+## onIntent(echo.bot)
+echoBot
+->output.text
+
 ## onIntent(embed.radio)
 x-normalize
 radioPlayer

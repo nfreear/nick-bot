@@ -12,6 +12,9 @@
       "intent": "speech.synthesis.listVoices",
       "utterances": [ "list vox", "list voices", "get tts voices", "show voices" ]
     }, {
+      "intent": "echo.bot",
+      "utterances": [ "say almost anything", "echo hello world", "echo hi nick", "say hello nick", "say hi robbie" ]
+    }, {
       "intent": "weather.inPlaceName",
       "utterances": [
         "what's the weather like in london?",

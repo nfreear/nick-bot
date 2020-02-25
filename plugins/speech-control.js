@@ -1,5 +1,5 @@
 /**
- * Speech controller.
+ * Speech synthesis controller.
  *
  * @author  NDF, 23-Feb-2020.
  */

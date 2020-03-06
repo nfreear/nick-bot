@@ -27,12 +27,22 @@ const store = WebChat.createStore(
   }
 );
 
+const styleOptions = {
+  botAvatarInitials: 'Bot',
+  userAvatarInitials: 'Me',
+  botAvatarBackgroundColor: '#0063B1',
+  userAvatarBackgroundColor: '#0063B1',
+  backgroundColor: '#333',
+  accent: 'white'
+};
+
 WebChat.renderWebChat(
   {
     directLine: WebChat.createDirectLine({
       domain: 'http://localhost:3000/directline',
       webSocket: false
     }),
+    styleOptions,
     store,
     userID: 'Nick' // Was: 'Jesús'
   },

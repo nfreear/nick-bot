@@ -7,13 +7,24 @@ body {
   margin: 0;
 }
 
+button {
+  cursor: pointer;
+}
+
+:link:focus,
+button:focus,
+input:focus {
+  outline: 3px solid darkorange;
+  outline-offset: .4rem;
+}
+
 #webchat {
   height: 100%;
   width: 100%;
 }
 
 #webchat * {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 #webchat small {

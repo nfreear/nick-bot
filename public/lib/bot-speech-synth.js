@@ -30,6 +30,7 @@ export class BotSpeechSynth {
     switch (action.action) {
       case 'tts.on':
         this.isOn = true;
+        this.switchVoice(action);
         break;
       case 'tts.off':
         this.isOn = false;
@@ -48,10 +49,25 @@ export class BotSpeechSynth {
       const speech = this.prepareSpeech($domElem);
       const utterThis = new Utterance(`${speech}`); // Was: `Bot says:`
 
+      if (this.voice) {
+        utterThis.voice = this.voice;
+      }
+
       console.warn(`Speak: "${speech}"`);
 
       Synth.speak(utterThis);
     }
+  }
+
+  switchVoice (action, regex = /^en/) {
+    const voices = Synth.getVoices().filter(vox => regex.test(vox.lang));
+    const voxRegex = new RegExp(action.param, 'i');
+
+    const result = voices.find(vox => voxRegex.test(vox.name));
+
+    this.voice = result || this.voice;
+
+    console.warn('> Switch voice:', this.voice ? this.voice.name : undefined);
   }
 
   voiceList (regex = /^en/) {
@@ -73,7 +89,7 @@ export class BotSpeechSynth {
     speech += $embed ? 'Embed, ' : '';
     speech += $link ? 'Link, ' : '';
     speech += $image ? `Image: ${$image.getAttribute('alt')}, ` : '';
-    speech += $text.innerText;
+    speech += ($text || $domElem).innerText;
 
     return speech;
   }

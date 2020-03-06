@@ -36,14 +36,33 @@ const RADIO_STATIONS = {
   bbcworldservice: 'BBC World Service',
   bbcworldservicearabic: 'BBC World Service Arabic',
 
+  bbcthreecounties: 'BBC Three Counties Radio',
+
   classicfm: 'Classic FM',
-  jazzfm: 'Jazz FM UK'
+  jazzfm: 'Jazz FM UK',
+  heartlondon: 'Heart London',
+  radiojackie: 'Radio Jackie',  // Pirate!
+
+  coffeebreakspanish: 'Coffee Break Spanish', // Podcasts!
 };
 
 const BBC_NUM_STATION_REGEX = /(Radio\s*[1-6]\s*(e?xtra|Live|Lw|Music)?)/i;
 
-// const BBC_WORLD_SERVICE_REGEX = /(BBC\s*World\s*Service\s*(Arabic)?)/i;
-// const OTHER_STATION_REGEX = /(Classic\s*FM|Jazz\s*FM|Heart\s*MK)/i;
+const RADIO_STATION_REGEXS = [
+  {
+    id: 'BBC radio numbers',
+    re: /(Radio\s*[1-6]\s*(e?xtra|Live|Lw|Music)?)/i,
+    prefix: 'bbc',
+  }, {
+    id: 'BBC world service',
+    re: (BBC\s*World\s*Service\s*(Arabic)?)/i,
+    prefix: 'bbc',
+  }, {
+    id: 'Other',
+    re: /(Classic\s*FM|Jazz\s*FM|Heart\s*London)/i,
+    prefix: '',
+  }
+];
 
 class RadioPlayer extends PluginBase {
   constructor (settings = {}, container) {
@@ -63,21 +82,23 @@ class RadioPlayer extends PluginBase {
     let answer = `Sorry, I didn't recognise the radio station: "_${input.utterance}_"
       ... try: "_Get Radio 2_"`;
 
-    const bbcNumMatch = input.utterance.match(BBC_NUM_STATION_REGEX);
+    RADIO_STATION_REGEXS.forEach(station => {
+      const match = input.utterance.match(station.re);
 
-    if (bbcNumMatch) {
-      const stationId = 'bbc' + bbcNumMatch[1].replace(/\s+/g, '').toLowerCase();
+      if (match) {
+        const stationId = station.prefix + match[1].replace(/\s+/g, '').toLowerCase();
 
-      this.logger.info('Radio:', bbcNumMatch);
+        this.logger.info('Radio ~ match:', match);
 
-      if (stationId in RADIO_STATIONS) {
-        const stationName = RADIO_STATIONS[stationId];
-        const embedUrl = RADIO_URL.join('').replace('bbcradio2', stationId);
-        const embedMarkdown = `[${stationName} - radio.net](${embedUrl}#_EMBED_)`;
+        if (stationId in RADIO_STATIONS) {
+          const stationName = RADIO_STATIONS[stationId];
+          const embedUrl = RADIO_URL.join('').replace('bbcradio2', stationId);
+          const embedMarkdown = `[${stationName} - radio.net](${embedUrl}#_EMBED_)`;
 
-        answer = embedMarkdown;
+          answer = embedMarkdown;
+        }
       }
-    }
+    });
 
     input.text = input.answer = answer;
 

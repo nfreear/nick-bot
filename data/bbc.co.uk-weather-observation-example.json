@@ -1,0 +1,36 @@
+{
+  "rss": {
+    "xmlns:atom": "http://www.w3.org/2005/Atom",
+    "xmlns:dc": "http://purl.org/dc/elements/1.1/",
+    "xmlns:georss": "http://www.georss.org/georss",
+    "version": "2.0",
+    "channel": {
+      "title": "BBC Weather - Observations for  Manchester, GB",
+      "link": "https://www.bbc.co.uk/weather/2643123",
+      "description": "Latest observations for Manchester from BBC Weather, including weather, temperature and wind information",
+      "language": "en",
+      "copyright": "Copyright: (C) British Broadcasting Corporation, see http://www.bbc.co.uk/terms/additional_rss.shtml for more details",
+      "pubDate": "Wed, 04 Mar 2020 17:00:00 GMT",
+      "dc:date": "2020-03-04T17:00:00Z",
+      "dc:language": "en",
+      "dc:rights": "Copyright: (C) British Broadcasting Corporation, see http://www.bbc.co.uk/terms/additional_rss.shtml for more details",
+      "atom:link": {
+        "href": "https://weather-service-thunder-broker.api.bbci.co.uk/en/observation/rss/2643123",
+        "type": "application/rss+xml",
+        "rel": "self"
+      },
+      "item": {
+        "title": "Wednesday - 17:00 GMT: Not available, 6°C (42°F)",
+        "link": "https://www.bbc.co.uk/weather/2643123",
+        "description": "Temperature: 6°C (42°F), Wind Direction: Southerly, Wind Speed: 4mph, Humidity: 75%, Pressure: 1005mb, Steady, Visibility: Poor",
+        "pubDate": "Wed, 04 Mar 2020 17:00:00 GMT",
+        "guid": {
+          "isPermaLink": "false",
+          "$t": "https://www.bbc.co.uk/weather/2643123-2020-03-04T17:00:00.000Z"
+        },
+        "dc:date": "2020-03-04T17:00:00Z",
+        "georss:point": "53.4809 -2.2374"
+      }
+    }
+  }
+}

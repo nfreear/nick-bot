@@ -4,6 +4,13 @@
 nlp.train
 console.say "Say something!"
 
+## onIntent(weather.test)
+// compiler=javascript
+const resp = request.get('https://proxy.hackeryou.com/?xmlToJSON=true&reqUrl=https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/2642465');
+if (resp && resp.rss && resp.rss.channel) {
+  input.answer = 'MK weather: ' + resp.rss.channel.item.description;
+}
+
 ## onIntent(weather.inPlaceName)
 x-normalize
 placenameEntity

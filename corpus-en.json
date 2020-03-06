@@ -3,6 +3,11 @@
   "locale": "en-US",
   "data": [
     {
+      "intent": "weather.test",
+      "utterances": [ "mk weather" ]
+    },
+
+    {
       "intent": "speech.synthesis.on",
       "utterances": [ "speech on", "unmute", "speech on voice karen", "umute vox alex", "tts on" ]
     }, {

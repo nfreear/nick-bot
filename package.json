@@ -10,8 +10,7 @@
     "frontend": "live-server --port=3001 --no-browser --watch=public",
     "lint:fix": "semistandard --fix",
     "vox:list": "say -v ? | grep en_",
-    "test": "semistandard",
-    "x-test": "echo \"Error: no test specified\" && exit 1"
+    "test": "semistandard"
   },
   "author": "Nick Freear",
   "license": "?",
@@ -21,7 +20,8 @@
     "@nlpjs/directline-connector": "^4.1.4",
     "@nlpjs/express-api-server": "^4.1.4",
     "@nlpjs/lang-es": "^4.1.4",
-    "@nlpjs/ner": "^4.1.4"
+    "@nlpjs/ner": "^4.1.4",
+    "xregexp": "^4.3.0"
   },
   "devDependencies": {
     "live-server": "^1.2.1",

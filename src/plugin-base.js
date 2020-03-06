@@ -6,8 +6,13 @@
  */
 
 const { defaultContainer, Clonable } = require('@nlpjs/core');
+// const { request } = require('@nlpjs/request');
 const fs = require('fs');
 const path = require('path');
+
+// https://github.com/HackerYou/json-proxy
+// https://rss2json.com/plans
+const XML_TO_JSON_URL = 'https://proxy.hackeryou.com/?xmlToJSON=true&reqUrl=%s'; // https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/2643123
 
 class PluginBase extends Clonable {
   constructor (settings = {}, container) {
@@ -22,7 +27,18 @@ class PluginBase extends Clonable {
 
     this.name = 'PluginBase';
 
+    // this.container.register('request', request);
+
     this.logger.info(this);
+  }
+
+  requestFeedToJson (feedUrl) {
+    const request = this.container.get('request');
+    const requestUrl = XML_TO_JSON_URL.replace(/%s/, feedUrl);
+
+    const promise = request.get(requestUrl);
+
+    return promise; // .contents;
   }
 
   logToFile (input, fileName) {

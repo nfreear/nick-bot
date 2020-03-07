@@ -24,27 +24,29 @@ export class BotSpeechSynth {
     });
   }
 
-  act ($domElem, action) {
-    console.log('> Act:', action);
+  act ($domElem, action, locale = 'en-GB') {
+    const filterRe = new RegExp('^' + locale.substring(0, 2)); // + '_';
+
+    console.log('> Act:', action, locale, filterRe);
 
     switch (action.action) {
       case 'tts.on':
         this.isOn = true;
-        this.switchVoice(action);
+        this.switchVoice(action, filterRe);
         break;
       case 'tts.off':
         this.isOn = false;
         Synth.cancel();
         break;
       case 'tts.listVox':
-        var list = this.voiceList().join(', ');
+        var list = this.voiceList(filterRe).join(', ');
 
         $domElem.innerHTML += `<ul><li><small> ${list} </small></li></ul>`;
         break;
     }
   }
 
-  speak ($domElem, rawText) {
+  speak ($domElem, rawText, locale = 'en-GB') {
     if (this.isOn) {
       const speech = this.prepareSpeech($domElem);
       const utterThis = new Utterance(`${speech}`); // Was: `Bot says:`
@@ -53,13 +55,14 @@ export class BotSpeechSynth {
         utterThis.voice = this.voice;
       }
 
-      console.warn(`Speak: "${speech}"`);
+      console.warn(`Speak: "${speech}"`, $domElem);
 
       Synth.speak(utterThis);
     }
   }
 
-  switchVoice (action, regex = /^en/) {
+  switchVoice (action, filterRe = /^en/) {
+    const regex = new RegExp(filterRe);
     const voices = Synth.getVoices().filter(vox => regex.test(vox.lang));
     const voxRegex = new RegExp(action.param, 'i');
 
@@ -70,7 +73,8 @@ export class BotSpeechSynth {
     console.warn('> Switch voice:', this.voice ? this.voice.name : undefined);
   }
 
-  voiceList (regex = /^en/) {
+  voiceList (filterRe = /^en/) {
+    const regex = new RegExp(filterRe);
     const voices = Synth.getVoices().filter(vox => regex.test(vox.lang));
     console.warn('> Voices:', voices, regex);
 

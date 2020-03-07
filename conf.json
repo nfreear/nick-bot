@@ -6,7 +6,7 @@
     "nlp": {
       "corpora": [
         "./corpus-en.json",
-        "./corpus-es.json"
+        "./corpus-zh.json"
       ]
     },
     "ner": {
@@ -31,8 +31,12 @@
     },
     "api-server": {
       "port": 3000,
-      "serveBot": false
+      "serveBot": false,
+
+      "middleware": [
+        "demoMiddleware"
+      ]
     }
   },
-  "use": ["Basic", "LangEs", "ConsoleConnector", "ExpressApiServer", "DirectlineConnector"]
+  "use": ["Basic", "LangZh", "ConsoleConnector", "ExpressApiServer", "DirectlineConnector"]
 }

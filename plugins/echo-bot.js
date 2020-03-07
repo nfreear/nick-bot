@@ -9,6 +9,8 @@ const {
   ExtractorTrim, ExtractorEnum, ExtractorRegex, ExtractorBuiltin
 } = require('@nlpjs/ner');
 
+const ECHO_RE = /^(say|echo|回声|说|huisheng|shuo|shuō)/i;
+
 class EchoBot extends PluginBase {
   constructor (settings = {}, container) {
     super({
@@ -33,14 +35,16 @@ class EchoBot extends PluginBase {
 
     ner.addAfterCondition('en', 'echo', 'echo'); /** @TODO: not working ?! */
     ner.addAfterCondition('en', 'echo', 'say');
+
+    ner.addAfterCondition('zh', 'echo', '回声');
   }
 
   run (input) {
     this.logger.info(this.name, '.run()');
 
-    const output = input.utterance.replace(/^(say|echo)/i, '').trim();
+    const output = input.utterance.replace(ECHO_RE, '').trim();
 
-    input.text = input.answer = `Say: "${output}"`;
+    input.text = input.answer = `Say|回声: "${output}"`;
 
     this.logToFile(input);
 

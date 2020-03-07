@@ -8,8 +8,11 @@ import { BotSpeechSynth } from './lib/bot-speech-synth.js';
 const WebChat = window.WebChat;
 const Event = window.Event;
 const ChatElem = document.querySelector('#webchat');
+const locale = param(/(?:lang|locale)=([a-z]{2}[-\w]*)/, 'en-GB');
 
 const synth = new BotSpeechSynth();
+
+console.warn('Locale:', locale);
 
 // We are adding a new middleware to customize the behavior of DIRECT_LINE/INCOMING_ACTIVITY.
 // https://github.com/microsoft/BotFramework-WebChat/tree/master/samples/04.api/c.incoming-activity-event
@@ -42,6 +45,7 @@ WebChat.renderWebChat(
       domain: 'http://localhost:3000/directline',
       webSocket: false
     }),
+    locale,
     styleOptions,
     store,
     userID: 'Nick' // Was: 'Jesús'
@@ -62,15 +66,15 @@ function isBotMessage (data) {
 }
 
 function handleMessage (inputText) {
-  const $lastItem = ChatElem.querySelector('ul[ aria-live ] li:last-child');
+  const $lastItem = ChatElem.querySelector('ul[ aria-live ] > li:last-child'); // Direct descendant!
   const $text = $lastItem.querySelector('.markdown');
 
   const action = tryAction($lastItem);
   tryEmbed($lastItem);
 
-  synth.act($text, action);
+  synth.act($text, action, locale);
 
-  synth.speak($lastItem, inputText);
+  synth.speak($lastItem, inputText, locale);
 }
 
 function tryAction ($lastItem) {
@@ -82,7 +86,7 @@ function tryAction ($lastItem) {
       window.alert('(action)');
     });
 
-    const actMatches = $actLink.getAttribute('href').match(/action=([a-z.]+)(?:;([a-z]+)=(\w*))?/i);
+    const actMatches = $actLink.getAttribute('href').match(/action=([a-z.]+)(?:;([a-z]+)=([\w-]*))?/i);
 
     if (actMatches) {
       const action = {
@@ -115,9 +119,9 @@ function tryEmbed ($lastItem) {
   }
 }
 
-/* function param (regex, def = null) {
+function param (regex, def = null) {
   const matches = window.location.href.match(regex);
   return matches ? matches[1] : def;
-} */
+}
 
 document.querySelector('#webchat > *').focus();

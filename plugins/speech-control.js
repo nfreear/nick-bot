@@ -31,7 +31,7 @@ class SpeechControl extends PluginBase {
     ner.use(ExtractorRegex);
     ner.use(ExtractorBuiltin);
 
-    ner.addRegexRule('en', 'voiceName', /(?:voice|vox)\s*([a-z]+)/i);
+    ner.addRegexRule('en', 'voiceName', /(?:voice|vox)\s*([a-z-]+)/i);
   }
 
   run (input) {

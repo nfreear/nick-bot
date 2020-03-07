@@ -1,0 +1,71 @@
+{
+  "name": "Corpus",
+  "locale": "zh-CN",
+  "x-locale": "zh-Hans-CN",
+  "x-url": "https://translate.google.com/#view=home&op=translate&sl=auto&tl=zh-CN&text=Hello",
+
+  "data": [
+    {
+      "intent": "weather.test",
+      "utterances": [ "mk weather" ]
+    },
+
+    {
+      "intent": "echo.bot",
+      "x-pinyin": [
+        "Huíshēng: Nǐ hǎo shìjiè",
+        "Shuō:  Jīhū rènhé dōngxī",
+        "Shuō:  Nǐ hǎo luō xī",
+        "Huíshēng:  Nǐ hǎo níkè"
+      ],
+      "utterances": [
+        "回声你好世界",
+        "说几乎任何东西",
+        "说你好罗西",
+        "回声你好尼克",
+        "huisheng ni hao shijie",
+        "shuo ni hao luo xi",
+        "huisheng ni hao nike"
+      ],
+      "x-utterances": [
+        "echo: hello world",
+        "say:  almost anything",
+        "say:  hello Rosie",
+        "echo: hello Nick"
+      ]
+    },
+
+    {
+      "intent": "greetings.hello",
+      "x-pinyin": [ "Nǐ hǎo", "Wènhòu", "Nǐ hǎo yángguāngyǔ" ],
+      "utterances": [
+        "你好",
+        "问候",
+        "ni hao",
+        "wenhou",
+        "ni hao guangyu"
+      ],
+      "answers": [
+        "你好",
+        "问候",
+        "你好杨光宇"
+      ]
+    },
+
+    {
+      "intent": "None",
+      "x-pinyin": [ "Wǒ xūyào jiànyì!", "Duìbùqǐ, wǒ tīng bù dǒng" ],
+      "utterances": [
+        "我需要建议！",
+        "I need advice",
+        "what should I do?"
+      ],
+      "x-answers": [
+        "Sorry, I don't understand"
+      ],
+      "answers": [
+        "对不起，我听不懂"
+      ]
+    }
+  ]
+}

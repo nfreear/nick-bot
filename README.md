@@ -24,13 +24,33 @@ npm run frontend
 > " I have a stammer "
 >
 > " what version "
+>
+> " unmute voice ting-ting"
+>
+> " 回声你好世界 "
+
+## Work-in-progress
+
+ * Plugins: `weatherIntent`, `radioPlayer`, `speechControl`, `echoBot`;
+ * Pipeline: `quote.of.the.day`;
+ * Text-to-speech (`TTS`), via `speechSynthesis` browser/ [Web API][tts];
+ * Dynamically switch `TTS` / synthesis voice, including to Chinese synthesisers;
+ * Simplified Chinese corpus (`zh-CN`, `zh-Hans`);
+ * Internationalization `i18n`;
+
+## Todo
+
+ * Localization;
+ * Plugins: `translate`, `news`, `search`, `chinese-quotes` ...?
+ * [Speech recognition][sr] via [Web API][];
+ * ...?  
 
 [nlp.js]: https://github.com/axa-group/nlp.js "NLP.js version 4.x"
 [webchat]: https://github.com/Microsoft/BotFramework-WebChat
   "Microsoft Bot Framework Web Chat"
-[web apis]: https://developer.mozilla.org/en-US/docs/Web/API#Interfaces
+[web api]: https://developer.mozilla.org/en-US/docs/Web/API#Interfaces
   "For example, speech recognition / synthesis, location ..."
-[speech recognition]: https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition
-[speech synthesis]: https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis
+[sr]: https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition
+[tts]: https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis
 [gh-badge]: https://github.com/nfreear/nick-bot/workflows/Node%20CI/badge.svg
 [gh-link]: https://github.com/nfreear/nick-bot/actions "Test status ~ 'Node CI'"

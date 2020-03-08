@@ -3,8 +3,9 @@
   "name": "nick-bot",
   "version": "0.8.1",
   "description": "An experimental Chat-bot, built on `NLP.js`",
+  "license": "GPL-3.0+",
   "X-source": "https://github.com/jesus-seijas-sp/nlpjs-examples/tree/master/01.quickstart/08.webchat",
-  "main": "index.js",
+  "main": "./index.js",
   "scripts": {
     "start": "node index.js",
     "frontend": "live-server --port=3001 --no-browser --watch=public --open='/public/'",
@@ -14,7 +15,6 @@
     "test": "semistandard"
   },
   "author": "Nick Freear",
-  "license": "?",
   "repository": "https://github.com/nfreear/nick-bot.git",
   "dependencies": {
     "@nlpjs/basic": "^4.1.4",

@@ -41,26 +41,24 @@ const RADIO_STATIONS = {
   classicfm: 'Classic FM',
   jazzfm: 'Jazz FM UK',
   heartlondon: 'Heart London',
-  radiojackie: 'Radio Jackie',  // Pirate!
+  radiojackie: 'Radio Jackie', // Pirate!
 
-  coffeebreakspanish: 'Coffee Break Spanish', // Podcasts!
+  coffeebreakspanish: 'Coffee Break Spanish' // Podcasts!
 };
-
-const BBC_NUM_STATION_REGEX = /(Radio\s*[1-6]\s*(e?xtra|Live|Lw|Music)?)/i;
 
 const RADIO_STATION_REGEXS = [
   {
     id: 'BBC radio numbers',
     re: /(Radio\s*[1-6]\s*(e?xtra|Live|Lw|Music)?)/i,
-    prefix: 'bbc',
+    prefix: 'bbc'
   }, {
     id: 'BBC world service',
     re: /(BBC\s*World\s*Service\s*(Arabic)?)/i,
-    prefix: 'bbc',
+    prefix: 'bbc'
   }, {
     id: 'Other',
     re: /(Classic\s*FM|Jazz\s*FM|Heart\s*London)/i,
-    prefix: '',
+    prefix: ''
   }
 ];
 

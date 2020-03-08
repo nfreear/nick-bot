@@ -11,28 +11,18 @@
 
 // const SAMPLE_WEATHER = require('../data/openweathermap.org-sample-data.json');
 
+const { BBC_WEATHER_LOCATIONS } = require('@nfreear/data');
 const { PluginBase, defaultContainer } = require('../src/plugin-base');
 const XRegExp = require('xregexp');
 
 const BBC_WEATHER_URL = 'https://www.bbc.co.uk/weather';
 const BBC_OBSERVATION_FEED_URL = 'https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/%s';
 
-const BBC_WEATHER_PLACES = {
+/* DELETE - const BBC_WEATHER_PLACES = {
   beijing: 1816670,
-  copenhagen: 2618425,
-  edinburgh: 2650225,
-  edmonton: 5946768,
-  london: 2643743,
-  macc: 2643266,
-  macclesfield: 2643266,
-  manchester: 2643123,
-  mk: 2642465,
-  'milton keynes': 2642465,
-  paris: 2988507,
-  'jan mayen': 6954612,
-  svalbard: 6954612,
+...
   yantai: 1787093
-};
+}; */
 
 // 'Temperature: 3°C (38°F), Wind Direction: East South Easterly, Wind Speed: 6mph, Humidity: 85%, Pressure: 1002mb, Rising, Visibility: Very Good'
 // 'Temperature: 5°C (41°F), Wind Direction: Northerly, Wind Speed: 17mph, Humidity: 100%, Pressure: 995mb, , Visibility: Moderate'
@@ -59,8 +49,10 @@ class WeatherIntent extends PluginBase {
 
   getBbcWeatherObservation (placeName) {
     return new Promise((resolve, reject) => {
-      if (BBC_WEATHER_PLACES[placeName]) {
-        const placeId = BBC_WEATHER_PLACES[placeName];
+      const location = BBC_WEATHER_LOCATIONS.data.find(loc => loc.en === placeName);
+
+      if (location) { // Was: if (BBC_WEATHER_PLACES[placeName]) {
+        const placeId = location.id; // BBC_WEATHER_PLACES[placeName];
         const feedUrl = BBC_OBSERVATION_FEED_URL.replace(/%s/, placeId);
 
         const promise = this.requestFeedToJson(feedUrl);
@@ -68,9 +60,9 @@ class WeatherIntent extends PluginBase {
         return promise.then(resp => {
           const url = resp.rss.channel.link;
           const title = resp.rss.channel.title;
-          const desc = resp.rss.channel.item.description;
+          const observations = resp.rss.channel.item.description;
 
-          const answer = `[${title}](${url}) — ${desc}`;
+          const answer = `[${title}](${url}) — ${observations}`;
 
           this.logger.info(answer);
 

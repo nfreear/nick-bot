@@ -17,6 +17,7 @@
   "author": "Nick Freear",
   "repository": "https://github.com/nfreear/nick-bot.git",
   "dependencies": {
+    "@nfreear/data": "^0.8.0",
     "@nlpjs/basic": "^4.1.4",
     "@nlpjs/directline-connector": "^4.1.4",
     "@nlpjs/express-api-server": "^4.1.4",

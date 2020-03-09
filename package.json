@@ -10,6 +10,7 @@
     "start": "node index.js",
     "frontend": "live-server --port=3001 --no-browser --watch=public --open='/public/'",
     "frontend:zh": "live-server --port=3001 --watch=public --open='/public/?lang=zh-CN'",
+    "grep:nlpjs": "grep -n '@nlpjs/' package.json",
     "lint:fix": "semistandard --fix",
     "vox:list": "say -v ? | egrep '(en|zh)_'",
     "test": "semistandard"
@@ -18,10 +19,9 @@
   "repository": "https://github.com/nfreear/nick-bot.git",
   "dependencies": {
     "@nfreear/data": "^0.8.0",
-    "@nlpjs/basic": "^4.1.4",
+    "@nlpjs/basic": "^4.2.1",
     "@nlpjs/directline-connector": "^4.1.4",
-    "@nlpjs/express-api-server": "^4.1.4",
-    "@nlpjs/lang-es": "^4.1.4",
+    "@nlpjs/express-api-server": "^4.2.0",
     "@nlpjs/lang-zh": "^4.2.1",
     "@nlpjs/ner": "^4.1.4",
     "xregexp": "^4.3.0"

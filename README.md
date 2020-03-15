@@ -3,8 +3,8 @@
 
 # nick-bot
 
-An experimental Chat-bot / Virtual assistant, built on [NLP.js][], [Webchat][]
-and some [Web APIs][].
+An experimental Chat-bot / Virtual assistant, built on [NLP.js][], [Webchat][],
+[Web APIs][web api] including `SpeechSynthesis`, and a [data][] collection.
 
 ```sh
 npm install
@@ -45,6 +45,7 @@ npm run frontend
  * [Speech recognition][sr] via [Web API][];
  * ...?  
 
+[data]: https://github.com/nfreear/data "@nfreear/data"
 [nlp.js]: https://github.com/axa-group/nlp.js "NLP.js version 4.x"
 [webchat]: https://github.com/Microsoft/BotFramework-WebChat
   "Microsoft Bot Framework Web Chat"

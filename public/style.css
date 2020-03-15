@@ -4,6 +4,7 @@ body {
   height: 100%;
 }
 body {
+  font: 1rem sans-serif;
   margin: 0;
 }
 
@@ -18,12 +19,21 @@ input:focus {
   outline-offset: .4rem;
 }
 
+.wc-loading {
+  font-size: 2.6rem;
+  font-style: italic;
+  font-weight: normal;
+  text-align: center;
+  margin: 3rem 0;
+}
+
 #webchat {
   height: 100%;
   width: 100%;
 }
 
-#webchat * {
+#webchat .main,
+#webchat ul {
   font-size: 1.3rem;
 }
 

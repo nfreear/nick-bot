@@ -3,14 +3,18 @@
  * @see https://github.com/microsoft/BotFramework-WebChat/blob/master/docs/API.md
  */
 
-import { BotSpeechSynth } from './lib/bot-speech-synth.js';
+import { BotCustomSpeech } from './lib/bot-custom-speech.js';
+// import { BotSpeechSynth } from './lib/bot-speech-synth.js';
 
 const WebChat = window.WebChat;
 const Event = window.Event;
 const ChatElem = document.querySelector('#webchat');
+const FOCUS_SEL = '#webchat > *';
 const locale = param(/(?:lang|locale)=([a-z]{2}[-\w]*)/, 'en-GB');
+// const speech = param(/(?:speech|tts)=(bf|1)/, false);
 
-const synth = new BotSpeechSynth();
+const speech = new BotCustomSpeech(locale);
+// const synth = new BotSpeechSynth();
 
 console.warn('Locale:', locale);
 
@@ -46,6 +50,8 @@ WebChat.renderWebChat(
       webSocket: false
     }),
     locale,
+    webSpeechPonyfillFactory: speech.speechPonyfill(),
+    selectVoice: speech.selectVoice,
     styleOptions,
     store,
     userID: 'Nick' // Was: 'Jesús'
@@ -57,6 +63,9 @@ window.addEventListener('webchatincomingactivity', ({ data }) => {
   console.log(`> Received an activity of type "${data.type}":`, data);
 
   if (isBotMessage(data)) {
+    /* if (data.attachments && data.attachments[0].contentType.match(/app.+json/)) {
+      console.log(`> JSON attachment:`, data.attachments[0]);
+    } */
     window.setTimeout(() => handleMessage(data.text), 50);
   }
 });
@@ -72,9 +81,9 @@ function handleMessage (inputText) {
   const action = tryAction($lastItem);
   tryEmbed($lastItem);
 
-  synth.act($text, action, locale);
+  speech.act($text, action, locale);
 
-  synth.speak($lastItem, inputText, locale);
+  speech.speak($lastItem, inputText, locale);
 }
 
 function tryAction ($lastItem) {
@@ -124,4 +133,4 @@ function param (regex, def = null) {
   return matches ? matches[1] : def;
 }
 
-document.querySelector('#webchat > *').focus();
+document.querySelector(FOCUS_SEL).focus();

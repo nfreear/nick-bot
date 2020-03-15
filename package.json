@@ -8,15 +8,23 @@
   "main": "./index.js",
   "scripts": {
     "start": "node index.js",
-    "frontend": "live-server --port=3001 --no-browser --watch=public --open='/public/'",
+    "frontend": "live-server --port=3001 --no-browser --watch=public --open='/public/?speech=cbf'",
     "frontend:zh": "live-server --port=3001 --watch=public --open='/public/?lang=zh-CN'",
     "grep:nlpjs": "grep -n '@nlpjs/' package.json",
-    "lint:fix": "semistandard --fix",
+    "json:lint": "node test/json-lint.js",
+    "js:fix": "semistandard --fix",
     "vox:list": "say -v ? | egrep '(en|zh)[_-]'",
-    "test": "semistandard"
+    "test": "npm run json:lint && semistandard"
   },
   "author": "Nick Freear",
   "repository": "https://github.com/nfreear/nick-bot.git",
+  "files": [
+    "conf.json",
+    "corpus-en.json",
+    "corpus-es.json",
+    "corpus-zh.json",
+    "pipelines.md"
+  ],
   "dependencies": {
     "@nfreear/data": "^0.8.0",
     "@nlpjs/basic": "^4.2.1",
@@ -28,11 +36,11 @@
     "xregexp": "^4.3.0"
   },
   "devDependencies": {
+    "jsonlint": "^1.6.3",
     "live-server": "^1.2.1",
     "semistandard": "^14.2.0"
   },
   "peerDependencies": {
-    "express-mung": "^0.5.1",
     "botframework-webchat-root": "https://github.com/microsoft/BotFramework-WebChat.git#v4.8.0"
   }
 }

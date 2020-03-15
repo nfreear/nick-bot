@@ -6,7 +6,7 @@
 *.log
 *BAK*
 
-/test
+test/*test.js
 webchat*.js
 /weather
 

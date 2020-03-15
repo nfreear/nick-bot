@@ -91,7 +91,7 @@ class RadioPlayer extends PluginBase {
         if (stationId in RADIO_STATIONS) {
           const stationName = RADIO_STATIONS[stationId];
           const embedUrl = RADIO_URL.join('').replace('bbcradio2', stationId);
-          const embedMarkdown = `[${stationName} - radio.net](${embedUrl}#_EMBED_)`;
+          const embedMarkdown = `[${stationName} - radio.net](${embedUrl}#!_EMBED_)`;
 
           answer = embedMarkdown;
         }

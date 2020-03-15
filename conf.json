@@ -31,9 +31,12 @@
     },
     "api-server": {
       "port": 3000,
-      "serveBot": false,
+      "serveBot": false
+    },
 
+    "x-middleware-inject": {
       "middleware": [
+        "middlewareModJson",
         "demoMiddleware"
       ]
     }

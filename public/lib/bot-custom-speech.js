@@ -12,7 +12,7 @@ const WebChat = window.WebChat;
 export class BotCustomSpeech {
   constructor (locale = 'en') {
     this.locale = locale;
-    this.pSpeech = this.param(/[\?&](?:speech|tts)=(bf|cbf|on|1)($|&|#)/, false);
+    this.pSpeech = this.param(/[?&](?:speech|tts)=(bf|cbf|on|1)($|&|#)/, false);
 
     console.debug('BotCustomSpeech:', this.pSpeech, locale);
     this.synth = new BotSpeechSynth();
@@ -24,15 +24,14 @@ export class BotCustomSpeech {
     if (this.useBF()) {
       console.debug('speechPonyfill: useBF', ponyfill);
       return ponyfill;
-    }
-    else if (this.useCustomBF()) {
+    } else if (this.useCustomBF()) {
       console.debug('speechPonyfill: useCustomBF', ponyfill);
       return () => ({
         SpeechGrammarList: ponyfill().SpeechGrammarList,
         SpeechRecognition: ponyfill().SpeechRecognition,
 
         speechSynthesis: null,
-        SpeechSynthesisUtterance: null,
+        SpeechSynthesisUtterance: null
       });
     }
     return null;
@@ -47,18 +46,18 @@ export class BotCustomSpeech {
   }
 
   act ($text, action, locale) {
-    if (this.useCustomBF ()) {
+    if (this.useCustomBF()) {
       this.synth.act($text, action, locale);
     }
   }
 
   speak ($lastItem, inputText, locale) {
-    if (this.useCustomBF ()) {
+    if (this.useCustomBF()) {
       this.synth.speak($lastItem, inputText, locale);
     }
   }
 
-  isOn() {
+  isOn () {
     return this.pSpeech;
   }
 

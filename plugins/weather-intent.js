@@ -66,7 +66,7 @@ class WeatherIntent extends PluginBase {
 
           this.logger.info(answer);
 
-          const match = XRegExp.exec(desc, BBC_OBSERVATION_XRE);
+          const match = XRegExp.exec(observations, BBC_OBSERVATION_XRE);
           this.logger.info('XRegExp:', match);
           /* `  - ${match.temp}
             - ${match.speed}

@@ -1,4 +1,5 @@
 const { dockStart } = require('@nlpjs/basic');
+// const MiddlewareInject = require('./src/middleware-inject');
 
 (async () => {
   const dock = await dockStart();

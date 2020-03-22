@@ -11,10 +11,10 @@
     "frontend": "live-server --port=3001 --no-browser --watch=public --open='/public/?speech=cbf'",
     "frontend:zh": "live-server --port=3001 --watch=public --open='/public/?lang=zh-CN'",
     "grep:nlpjs": "grep -n '@nlpjs/' package.json",
-    "json:lint": "node test/json-lint.js",
-    "js:fix": "semistandard --fix",
+    "lint:json": "node test/json-lint.js",
+    "fix:js": "semistandard --fix",
     "vox:list": "say -v ? | egrep '(en|zh)[_-]'",
-    "test": "npm run json:lint && semistandard"
+    "test": "npm run lint:json && semistandard"
   },
   "author": "Nick Freear",
   "repository": "https://github.com/nfreear/nick-bot.git",

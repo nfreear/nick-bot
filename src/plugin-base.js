@@ -29,7 +29,7 @@ class PluginBase extends Clonable {
 
     // this.container.register('request', request);
 
-    this.logger.info(this);
+    // this.logger.info(this);
   }
 
   requestFeedToJson (feedUrl) {

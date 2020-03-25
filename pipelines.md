@@ -47,11 +47,30 @@ disabilityClassifier
 agentVersion
 ->output.text
 
+## onIntent(X-DISABLE--quote.of.the.day)
+quoteProverb
+->output.text
+
+## onIntent(dad.joke)
+// compiler=javascript
+const res = request.get({url: 'https://icanhazdadjoke.com', headers: {Accept: 'application/json'} });
+// const res = request.get('https://sv443.net/jokeapi/v2/joke/Any?format=txt'); // Bad!
+if (res && res.joke) {
+  input.answer = '"' + res.joke + '" via [Icanhazdadjoke](https://icanhazdadjoke.com)';
+}
+
+## onIntent(jokes.one)
+// compiler=javascript
+const resp = request.get('https://api.jokes.one/jod');
+if (resp && resp.contents) {
+  input.answer = '"' + resp.contents.jokes[0].joke.text + '" via [Jokes.one](https://jokes.one/)';
+}
+
 ## onIntent(quote.of.the.day)
 // compiler=javascript
 const resp = request.get('https://quotes.rest/qod?language=en');
 if (resp && resp.contents.quotes[ 0 ]) {
-  input.answer = '"' + resp.contents.quotes[ 0 ].quote + '" via [TheSaidSo](https://theysaidso.com)';
+  input.answer = '"' + resp.contents.quotes[ 0 ].quote + '" via [TheySaidSo](https://theysaidso.com)';
 }
 
 ## onIntent(joke.chucknorris)

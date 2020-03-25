@@ -48,6 +48,9 @@
       "intent": "quote.of.the.day",
       "utterances": [ "they said so", "quote of the day", "give me a quote", "qod" ]
     }, {
+      "intent": "dad.joke",
+      "utterances": [ "tell me a joke", "give me a joke", "get me a joke", "dad joke" ]
+    }, {
       "intent": "embed.youtube",
       "utterances": [ "give me a video", "get a video", "show video", "youtube video", "show youtube" ],
       "answers": [

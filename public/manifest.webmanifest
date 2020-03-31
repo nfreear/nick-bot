@@ -1,0 +1,27 @@
+{
+  "lang": "en-GB",
+  "name": "nick-bot",
+  "short_name": "nick-bot",
+  "start_url": "./?speech=cbf&tts=1",
+  "scope": "./",
+  "display": "minimal-ui",
+  "background_color": "#fff",
+  "theme_color": "darkorange",
+  "description": "An experimental Virtual assistant / Chat-bot, built on `NLP.js`",
+  "icons": [
+    {
+      "src": "assets/assistant-icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }, {
+      "src": "assets/assistant-icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ],
+
+  "#": [
+    "https://web.dev/add-manifest/",
+    "https://findicons.com/icon/557919/assistant#"
+  ]
+}

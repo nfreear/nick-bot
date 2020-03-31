@@ -54,7 +54,7 @@ const RADIO_STATION_REGEXS = [
   }, {
     id: 'BBC world service',
     re: /(BBC\s*World\s*Service\s*(Arabic)?)/i,
-    prefix: 'bbc'
+    prefix: ''
   }, {
     id: 'Other',
     re: /(Classic\s*FM|Jazz\s*FM|Heart\s*London)/i,

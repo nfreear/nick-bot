@@ -43,6 +43,7 @@ const RADIO_STATIONS = {
   heartlondon: 'Heart London',
   radiojackie: 'Radio Jackie', // Pirate!
 
+  unionjack: 'Union Jack', // https://www.unionjack.co.uk/
   coffeebreakspanish: 'Coffee Break Spanish' // Podcasts!
 };
 
@@ -57,7 +58,7 @@ const RADIO_STATION_REGEXS = [
     prefix: ''
   }, {
     id: 'Other',
-    re: /(Classic\s*FM|Jazz\s*FM|Heart\s*London)/i,
+    re: /(Classic\s*FM|Jazz\s*FM|Heart\s*London|Union\s*Jack)/i,
     prefix: ''
   }
 ];

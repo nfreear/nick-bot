@@ -20,6 +20,9 @@
       "intent": "echo.bot",
       "utterances": [ "say almost anything", "echo hello world", "echo hi nick", "say hello nick", "say hi robbie" ]
     }, {
+      "intent": "internet.of.things",
+      "utterances": [ "turn plug A on", "switch plug one off" ]
+    }, {
       "intent": "weather.inPlaceName",
       "utterances": [
         "what's the weather like in london?",

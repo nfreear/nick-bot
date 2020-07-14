@@ -33,6 +33,9 @@ speechControl
 echoBot
 ->output.text
 
+## onIntent(internet.of.things)
+internetOfThings
+
 ## onIntent(embed.radio)
 x-normalize
 radioPlayer

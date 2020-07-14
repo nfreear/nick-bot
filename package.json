@@ -33,6 +33,7 @@
     "@nlpjs/lang-zh": "^4.2.1",
     "@nlpjs/ner": "^4.1.4",
     "express-mung": "^0.5.1",
+    "tplink-cloud-api": "^0.6.1",
     "xregexp": "^4.3.0"
   },
   "devDependencies": {

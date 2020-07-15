@@ -2,6 +2,7 @@
   "#": "NLP.js chat-bot configuration.",
 
   "pathPlugins": "./plugins",
+  "pathPipelines": "./pipelines.md",
   "settings": {
     "nlp": {
       "corpora": [

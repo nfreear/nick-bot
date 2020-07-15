@@ -21,7 +21,12 @@
       "utterances": [ "say almost anything", "echo hello world", "echo hi nick", "say hello nick", "say hi robbie" ]
     }, {
       "intent": "internet.of.things",
-      "utterances": [ "turn plug A on", "switch plug one off" ]
+      "utterances": [
+        "turn plug A on",
+        "turn on plug five",
+        "switch plug one off",
+        "turn off plug B"
+      ]
     }, {
       "intent": "weather.inPlaceName",
       "utterances": [

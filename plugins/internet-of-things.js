@@ -1,5 +1,5 @@
 /**
- * Internet of things ~~ harness TP-Link smart plug(s).
+ * Internet of things ~~ control devices, including TP-Link smart plug(s).
  *
  * @author Nick Freear, 14-Jul-2020.
  */
@@ -28,14 +28,14 @@ class InternetOfThings extends PluginBase {
     // this.device = null;
 
     login(TP_LINK_USER, TP_LINK_PASS).then(tplink => {
-      console.log('TPLink.', 'Logged in OK:', tplink.getTermId(), tplink.getToken());
+      console.log('IoT: TPLink.', 'Logged in OK:', tplink.getTermId(), tplink.getToken());
 
       this.tplink = tplink;
 
       return tplink.getDeviceList();
     })
       .then(deviceList => {
-        console.log('TPLink.', 'Device list:', deviceList);
+        console.log('IoT: TPLink.', 'Device list:', deviceList);
 
         // this.device = this.tplink.getHS100(TP_LINK_DEV);
       });

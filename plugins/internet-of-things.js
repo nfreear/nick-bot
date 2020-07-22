@@ -44,11 +44,12 @@ class InternetOfThings extends PluginBase {
   run (input) {
     this.logger.info(`${this.name}.run()`);
 
+    const { IOT_DEVICE_ALIAS } = process.env;
+
     let answer = `Sorry, I didn't recognise "_${input.utterance}_"
       … try: "_Turn plug A on_"`;
 
     try {
-      const { IOT_DEVICE_ALIAS } = process.env;
       const DEVICE = this.tplink.getHS100(IOT_DEVICE_ALIAS);
 
       if (/ on( |$)/i.test(input.utterance)) {

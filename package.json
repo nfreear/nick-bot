@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "nick-bot",
-  "version": "0.8.1",
+  "version": "0.8.3",
   "description": "An experimental Virtual assistant / Chat-bot, built on `NLP.js`",
   "license": "GPL-3.0+",
   "X-source": "https://github.com/jesus-seijas-sp/nlpjs-examples/tree/master/01.quickstart/08.webchat",
@@ -27,11 +27,11 @@
   ],
   "dependencies": {
     "@nfreear/data": "^0.8.0",
-    "@nlpjs/basic": "^4.2.1",
-    "@nlpjs/directline-connector": "^4.1.4",
-    "@nlpjs/express-api-server": "^4.2.0",
-    "@nlpjs/lang-zh": "^4.2.1",
-    "@nlpjs/ner": "^4.1.4",
+    "@nlpjs/basic": "^4.8.4",
+    "@nlpjs/directline-connector": "^4.6.2",
+    "@nlpjs/express-api-server": "^4.8.0",
+    "@nlpjs/lang-zh": "^4.8.1",
+    "@nlpjs/ner": "^4.6.0",
     "express-mung": "^0.5.1",
     "tplink-cloud-api": "^0.6.1",
     "xregexp": "^4.3.0"
@@ -39,7 +39,7 @@
   "devDependencies": {
     "jsonlint": "^1.6.3",
     "live-server": "^1.2.1",
-    "semistandard": "^14.2.0"
+    "semistandard": "^14.2.2"
   },
   "peerDependencies": {
     "botframework-webchat-root": "https://github.com/microsoft/BotFramework-WebChat.git#v4.8.0"

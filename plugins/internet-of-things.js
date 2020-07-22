@@ -42,22 +42,27 @@ class InternetOfThings extends PluginBase {
   }
 
   run (input) {
-    this.logger.info(this.name, '.run()');
-
-    const { IOT_DEVICE_ALIAS } = process.env;
-    const DEVICE = this.tplink.getHS100(IOT_DEVICE_ALIAS);
+    this.logger.info(`${this.name}.run()`);
 
     let answer = `Sorry, I didn't recognise "_${input.utterance}_"
       … try: "_Turn plug A on_"`;
 
-    if (/ on( |$)/i.test(input.utterance)) {
-      answer = `Switching device “_${IOT_DEVICE_ALIAS}_” ON.`;
+    try {
+      const { IOT_DEVICE_ALIAS } = process.env;
+      const DEVICE = this.tplink.getHS100(IOT_DEVICE_ALIAS);
 
-      DEVICE.powerOn();
-    } else if (/ off( |$)/i.test(input.utterance)) {
-      answer = `Switching device “_${IOT_DEVICE_ALIAS}_” OFF.`;
+      if (/ on( |$)/i.test(input.utterance)) {
+        answer = `Switching device “_${IOT_DEVICE_ALIAS}_” ON.`;
 
-      DEVICE.powerOff();
+        DEVICE.powerOn();
+      } else if (/ off( |$)/i.test(input.utterance)) {
+        answer = `Switching device “_${IOT_DEVICE_ALIAS}_” OFF.`;
+
+        DEVICE.powerOff();
+      }
+    } catch (err) {
+      console.error('ERROR (IoT).', err);
+      answer = `Sorry, there was a problem with IoT device “_${IOT_DEVICE_ALIAS}_”.`;
     }
 
     input.text = input.answer = answer;

@@ -25,7 +25,11 @@
         "turn plug A on",
         "turn on plug five",
         "switch plug one off",
-        "turn off plug B"
+        "turn off plug B",
+        "switch the light on",
+        "turn off the light",
+        "switch on device two",
+        "turn device Z off"
       ]
     }, {
       "intent": "weather.inPlaceName",

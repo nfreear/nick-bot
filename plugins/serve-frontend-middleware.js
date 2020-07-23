@@ -5,6 +5,7 @@
  */
 
 const { PluginBase, defaultContainer } = require('../src/plugin-base');
+const ChatAuthentication = require('../src/chat-authentication');
 const express = require('express');
 const { join } = require('path');
 
@@ -39,6 +40,12 @@ class ServeFrontendMiddleware extends PluginBase {
 
     this.app = server;
 
+    // this.setupPassport();
+    // this.setupAuthRoutes();
+
+    const AUTH = new ChatAuthentication(server, this.logger);
+    AUTH.setup();
+
     this.app.use(express.static(PUBLIC_PATH));
 
     /* // @nlpjs/express-api-server
@@ -55,6 +62,8 @@ class ServeFrontendMiddleware extends PluginBase {
     SELF.logger.info(`${this.name}.use() called!`);
 
     return (err, req, res, next) => {
+      if (err) throw new Error(err);
+
       // Middleware functionality goes here!
 
       const logger = SELF.container.get('logger');

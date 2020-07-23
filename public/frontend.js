@@ -5,59 +5,69 @@
 
 import { BotCustomSpeech } from './lib/bot-custom-speech.js';
 // import { BotSpeechSynth } from './lib/bot-speech-synth.js';
+import { BotAuthApi } from './lib/bot-auth-api.js';
 
 const WebChat = window.WebChat;
 const Event = window.Event;
+
 const ChatElem = document.querySelector('#webchat');
 const FOCUS_SEL = '#webchat > *';
 const locale = param(/(?:lang|locale)=([a-z]{2}[-\w]*)/, 'en-GB');
-// const speech = param(/(?:speech|tts)=(bf|1)/, false);
-
 const speech = new BotCustomSpeech(locale);
-// const synth = new BotSpeechSynth();
 
-console.warn('Locale:', locale);
+launchBot();
 
-// We are adding a new middleware to customize the behavior of DIRECT_LINE/INCOMING_ACTIVITY.
-// https://github.com/microsoft/BotFramework-WebChat/tree/master/samples/04.api/c.incoming-activity-event
-const store = WebChat.createStore(
-  {},
-  ({ dispatch }) => next => action => {
-    if (action.type === 'DIRECT_LINE/INCOMING_ACTIVITY') {
-      const event = new Event('webchatincomingactivity');
+async function launchBot () {
+  const auth = new BotAuthApi();
 
-      event.data = action.payload.activity;
-      window.dispatchEvent(event);
+  const USER = await auth.getUser();
+
+  // const speech = param(/(?:speech|tts)=(bf|1)/, false);
+  // const synth = new BotSpeechSynth();
+
+  console.warn('Locale:', locale);
+
+  // We are adding a new middleware to customize the behavior of DIRECT_LINE/INCOMING_ACTIVITY.
+  // https://github.com/microsoft/BotFramework-WebChat/tree/master/samples/04.api/c.incoming-activity-event
+  const store = WebChat.createStore(
+    {},
+    ({ dispatch }) => next => action => {
+      if (action.type === 'DIRECT_LINE/INCOMING_ACTIVITY') {
+        const event = new Event('webchatincomingactivity');
+
+        event.data = action.payload.activity;
+        window.dispatchEvent(event);
+      }
+
+      return next(action);
     }
+  );
 
-    return next(action);
-  }
-);
+  const styleOptions = {
+    botAvatarInitials: 'Bot',
+    userAvatarInitials: USER.initials || 'Jo',
+    botAvatarBackgroundColor: '#0063B1',
+    userAvatarBackgroundColor: '#0063B1',
+    backgroundColor: '#333',
+    accent: 'white'
+  };
 
-const styleOptions = {
-  botAvatarInitials: 'Bot',
-  userAvatarInitials: 'Me',
-  botAvatarBackgroundColor: '#0063B1',
-  userAvatarBackgroundColor: '#0063B1',
-  backgroundColor: '#333',
-  accent: 'white'
-};
-
-WebChat.renderWebChat(
-  {
-    directLine: WebChat.createDirectLine({
-      domain: 'http://localhost:3000/directline',
-      webSocket: false
-    }),
-    locale,
-    webSpeechPonyfillFactory: speech.speechPonyfill(),
-    selectVoice: speech.selectVoice,
-    styleOptions,
-    store,
-    userID: 'Nick' // Was: 'Jesús'
-  },
-  ChatElem
-);
+  WebChat.renderWebChat(
+    {
+      directLine: WebChat.createDirectLine({
+        domain: 'http://localhost:3000/directline',
+        webSocket: false
+      }),
+      locale,
+      webSpeechPonyfillFactory: speech.speechPonyfill(),
+      selectVoice: speech.selectVoice,
+      styleOptions,
+      store,
+      userID: USER.username || 'Jo' // Was: 'Jesús'
+    },
+    ChatElem
+  );
+} // launchBot();
 
 window.addEventListener('webchatincomingactivity', ({ data }) => {
   console.log(`> Received an activity of type "${data.type}":`, data);

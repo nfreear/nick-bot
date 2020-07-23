@@ -33,6 +33,8 @@
     "@nlpjs/lang-zh": "^4.8.1",
     "@nlpjs/ner": "^4.6.0",
     "express-mung": "^0.5.1",
+    "passport": "^0.4.1",
+    "passport-http": "^0.3.0",
     "tplink-cloud-api": "^0.6.1",
     "xregexp": "^4.3.0"
   },

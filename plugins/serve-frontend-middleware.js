@@ -40,10 +40,8 @@ class ServeFrontendMiddleware extends PluginBase {
 
     this.app = server;
 
-    // this.setupPassport();
-    // this.setupAuthRoutes();
-
     const AUTH = new ChatAuthentication(server, this.logger);
+
     AUTH.setup();
 
     this.app.use(express.static(PUBLIC_PATH));

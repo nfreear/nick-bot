@@ -27,6 +27,8 @@ class ChatAuthentication /* extends Clonable */ {
   }
 
   setup () {
+    DB.user.connect(this.logger);
+
     this.setupPassport();
 
     this.loginRoute();
@@ -40,6 +42,7 @@ class ChatAuthentication /* extends Clonable */ {
     const logger = this.logger;
 
     passport.use(new BasicStrategy(
+      { realm: 'Nick-Bot' },
       (username, password, done) => {
         DB.user.findByUsername(username, (err, user) => {
           if (err) {
@@ -50,7 +53,7 @@ class ChatAuthentication /* extends Clonable */ {
             logger.error(`Auth: username not found: ${username}`);
             return done(null, false);
           }
-          if (user.password !== password) {
+          if (!user.verifyPassword(password)) {
             logger.error(`Auth: incorrect password: ${username}`);
             return done(null, false);
           }

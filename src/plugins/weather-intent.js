@@ -12,7 +12,7 @@
 // const SAMPLE_WEATHER = require('../data/openweathermap.org-sample-data.json');
 
 const { BBC_WEATHER_LOCATIONS } = require('@nfreear/data');
-const { PluginBase, defaultContainer } = require('../src/plugin-base');
+const { PluginBase, defaultContainer } = require('../plugin-base');
 const XRegExp = require('xregexp');
 
 const BBC_WEATHER_URL = 'https://www.bbc.co.uk/weather';

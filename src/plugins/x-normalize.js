@@ -5,7 +5,7 @@
  * @see  https://github.com/axa-group/nlp.js/blob/master/docs/v4/core/normalizer.md
  */
 
-const { PluginBase, defaultContainer } = require('../src/plugin-base');
+const { PluginBase, defaultContainer } = require('../plugin-base');
 
 class XNormalize extends PluginBase {
   constructor (settings = {}, container) {

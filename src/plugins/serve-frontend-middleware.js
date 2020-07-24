@@ -4,12 +4,12 @@
  * @author Nick Freear, 22-Jul-2020.
  */
 
-const { PluginBase, defaultContainer } = require('../src/plugin-base');
-const ChatAuthentication = require('../src/chat-authentication');
+const { PluginBase, defaultContainer } = require('../plugin-base');
+const ChatAuthentication = require('../chat-authentication');
 const express = require('express');
 const { join } = require('path');
 
-const PUBLIC_PATH = join(__dirname, '..', 'public');
+const PUBLIC_PATH = join(__dirname, '..', '..', 'public');
 
 class ServeFrontendMiddleware extends PluginBase {
   constructor (settings = {}, container) {

@@ -6,7 +6,7 @@
  * @author  NDF, 21-Feb-2020.
  */
 
-const { PluginBase, defaultContainer } = require('../src/plugin-base');
+const { PluginBase, defaultContainer } = require('../plugin-base');
 
 const RADIO_URL = [
   'https://www.radio.net/inc/microsite/',

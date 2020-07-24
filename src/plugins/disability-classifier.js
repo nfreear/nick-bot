@@ -4,12 +4,12 @@
  * @author NDF, 19-Feb-2020.
  */
 
-const { PluginBase, defaultContainer } = require('../src/plugin-base');
+const { PluginBase, defaultContainer } = require('../plugin-base');
 const {
   ExtractorTrim, ExtractorEnum, ExtractorRegex, ExtractorBuiltin
 } = require('@nlpjs/ner');
 
-const DISABILITY_CATS = require('../src/hesa-plus-disability-categories-en');
+const DISABILITY_CATS = require('../hesa-plus-disability-categories-en');
 
 class DisabilityClassifier extends PluginBase {
   constructor (settings = {}, container) {

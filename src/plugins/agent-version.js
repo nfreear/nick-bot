@@ -4,10 +4,10 @@
  * @author  NDF, 19-Feb-2020.
  */
 
-const { PluginBase, defaultContainer } = require('../src/plugin-base');
+const { PluginBase, defaultContainer } = require('../plugin-base');
 
-const PKG = require('../package.json');
-const LOCK = require('../package-lock.json');
+const PKG = require('../../package.json');
+const LOCK = require('../../package-lock.json');
 
 class AgentVersion extends PluginBase {
   constructor (settings = {}, container) {

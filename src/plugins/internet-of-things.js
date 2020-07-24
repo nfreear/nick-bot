@@ -5,7 +5,7 @@
  */
 
 const { login } = require('tplink-cloud-api');
-const { PluginBase, defaultContainer } = require('../src/plugin-base');
+const { PluginBase, defaultContainer } = require('../plugin-base');
 
 class InternetOfThings extends PluginBase {
   constructor (settings = {}, container) {

@@ -6,7 +6,7 @@
  * @author NDF, 15-Feb-2020.
  */
 
-const { PluginBase, defaultContainer } = require('../src/plugin-base');
+const { PluginBase, defaultContainer } = require('../plugin-base');
 const {
   ExtractorTrim, ExtractorEnum, ExtractorRegex, ExtractorBuiltin
 } = require('@nlpjs/ner');

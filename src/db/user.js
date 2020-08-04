@@ -6,7 +6,8 @@
  * @see https://github.com/passport/express-3.x-http-basic-example
  */
 
-const JS_DATA_PATH = '../../user-db';
+// Glitch `.data` directory!
+const JS_DATA_PATH = '../../.data/user-db';
 
 /* module.exports = [
     { id: 1, username: 'jack', password: 'secret', displayName: 'Jack', emails: [ { value: 'jack@example.com' } ] }

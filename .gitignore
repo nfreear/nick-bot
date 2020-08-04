@@ -1,6 +1,7 @@
 
 /user-db.js*
 
+.data
 .DS_Store
 .env
 /node_modules
@@ -17,3 +18,4 @@ recog.html
 search.js
 *middleware-*
 *quote-prov*
+dis.js

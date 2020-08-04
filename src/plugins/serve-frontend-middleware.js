@@ -8,8 +8,10 @@ const { PluginBase, defaultContainer } = require('../plugin-base');
 const ChatAuthentication = require('../chat-authentication');
 const express = require('express');
 const { join } = require('path');
+const fs = require('fs');
 
 const PUBLIC_PATH = join(__dirname, '..', '..', 'public');
+const DIFF_PATH = join(__dirname, '..', '..', '.data', 'git-diff--29-jul-2020.diff');
 
 class ServeFrontendMiddleware extends PluginBase {
   constructor (settings = {}, container) {
@@ -30,6 +32,8 @@ class ServeFrontendMiddleware extends PluginBase {
   }
 
   start () {
+    const { AUTH_ENABLE, DIFF_ENABLE } = process.env;
+
     const server = this.container.get('api-server').app;
 
     this.logger.info(`${this.name}.start()`, server);
@@ -40,11 +44,27 @@ class ServeFrontendMiddleware extends PluginBase {
 
     this.app = server;
 
-    const AUTH = new ChatAuthentication(server, this.logger);
+    if (AUTH_ENABLE) {
+      const AUTH = new ChatAuthentication(server, this.logger);
 
-    AUTH.setup();
+      AUTH.setup();
+    }
 
     this.app.use(express.static(PUBLIC_PATH));
+
+    if (DIFF_ENABLE) {
+      this.app.get('/glitch.diff', async (req, res) => {
+        try {
+          const DIFF = await fs.promises.readFile(DIFF_PATH, 'utf8');
+          res.header('Content-Type', 'text/plain; charset=utf-8');
+          res.send(DIFF);
+        } catch (err) {
+          this.logger.error('Error in "/glitch.diff" route.');
+          this.logger.error(err);
+          res.status(500).send('Something broke!');
+        }
+      });
+    }
 
     /* // @nlpjs/express-api-server
     if (this.settings.serveBot) {

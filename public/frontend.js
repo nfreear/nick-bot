@@ -55,7 +55,7 @@ async function launchBot () {
   WebChat.renderWebChat(
     {
       directLine: WebChat.createDirectLine({
-        domain: 'http://localhost:3000/directline',
+        domain: '/directline', // Was: 'http://localhost:3000/directline',
         webSocket: false
       }),
       locale,
@@ -85,7 +85,8 @@ function isBotMessage (data) {
 }
 
 function handleMessage (inputText) {
-  const $lastItem = ChatElem.querySelector('ul[ aria-live ] > li:last-child'); // Direct descendant!
+  const activityList = ChatElem.querySelector('ul[ aria-live ], ul[ aria-roledescription ]');
+  const $lastItem = activityList.querySelector(' li:last-child'); // Direct descendant!
   const $text = $lastItem.querySelector('.markdown');
 
   const action = tryAction($lastItem);

@@ -22,10 +22,15 @@ class InternetOfThings extends PluginBase {
   }
 
   tplinkLogin () {
-    const { TP_LINK_USER, TP_LINK_PASS } = process.env;
+    const { TP_LINK_USER, TP_LINK_PASS, IOT_ENABLE } = process.env;
 
     this.tplink = null;
     // this.device = null;
+
+    if (!TP_LINK_USER || !IOT_ENABLE) {
+      this.logger.warn('IoT: disabled!');
+      return;
+    }
 
     login(TP_LINK_USER, TP_LINK_PASS).then(tplink => {
       console.log('IoT: TPLink.', 'Logged in OK:', tplink.getTermId(), tplink.getToken());
@@ -44,7 +49,13 @@ class InternetOfThings extends PluginBase {
   run (input) {
     this.logger.info(`${this.name}.run()`);
 
-    const { IOT_DEVICE_ALIAS } = process.env;
+    const { IOT_DEVICE_ALIAS, IOT_ENABLE } = process.env;
+
+    if (!IOT_ENABLE || !this.tplink) {
+      this.logger.debug('IoT: disabled!');
+      input.text = input.answer = 'IoT disabled!';
+      return input;
+    }
 
     let answer = `Sorry, I didn't recognise "_${input.utterance}_"
       … try: "_Turn plug A on_"`;

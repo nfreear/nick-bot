@@ -45,6 +45,9 @@
         "get the weather for %place%"
       ]
     }, {
+      "intent": "news.audio",
+      "utterances": [ "get the news", "play the headlines", "one minute news", "play news", "bbc headlines" ]
+    }, {
       "intent": "disability.declare",
       "utterances": [
         "I have a stammer",

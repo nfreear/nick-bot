@@ -79,3 +79,14 @@ input:focus {
   font-size: .9rem;
   text-decoration: none;
 }
+
+#webchat audio {
+  border: 1px solid #888;
+  display: block;
+  margin-top: .5rem;
+  zoom: 1.2;
+}
+
+#webchat a[ href *= _AUDIO_ ] {
+  display: none;
+}

@@ -18,6 +18,9 @@ placenameEntity
 weatherIntent
 ->output.text
 
+## onIntent(news.audio)
+newsIntent
+
 ## onIntent(speech.synthesis.on)
 speechControl
 ->output.text

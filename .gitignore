@@ -14,6 +14,7 @@ webchat*.js
 /weather
 
 recog.html
+*test*.html
 
 search.js
 *middleware-*

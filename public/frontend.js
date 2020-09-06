@@ -63,7 +63,7 @@ async function launchBot () {
       selectVoice: speech.selectVoice,
       styleOptions,
       store,
-      userID: USER.username || 'Jo' // Was: 'Jesús'
+      userID: USER.username || 'jo.bloggs@example.org' // 'Jo' // Was: 'Jesús'
     },
     ChatElem
   );
@@ -91,6 +91,7 @@ function handleMessage (inputText) {
 
   const action = tryAction($lastItem);
   tryEmbed($lastItem);
+  tryAudio($lastItem);
 
   speech.act($text, action, locale);
 
@@ -136,6 +137,20 @@ function tryEmbed ($lastItem) {
     $container.innerHTML += `<iframe src="${url}" title="Embed: ${text}" allowfullscreen ></iframe>`;
 
     console.debug('> Embed:', $container, url);
+  }
+}
+
+function tryAudio ($lastItem) {
+  const $audio = $lastItem.querySelector('a[ href *= _AUDIO_ ]');
+
+  if ($audio) {
+    const url = $audio.getAttribute('href');
+    const text = $audio.innerText;
+    const $container = $audio.parentElement;
+
+    $container.innerHTML += `<audio controls autoplay="true" src="${url}" title="Audio: ${text}"/>`;
+
+    console.debug('> Audio:', $container, url);
   }
 }
 

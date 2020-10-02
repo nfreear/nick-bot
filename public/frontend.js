@@ -55,7 +55,7 @@ async function launchBot () {
   WebChat.renderWebChat(
     {
       directLine: WebChat.createDirectLine({
-        domain: '/directline', // Was: 'http://localhost:3000/directline',
+        domain: `${isLocalhost() ? 'http://localhost:3000' : ''}/directline`,
         webSocket: false
       }),
       locale,
@@ -157,6 +157,10 @@ function tryAudio ($lastItem) {
 function param (regex, def = null) {
   const matches = window.location.href.match(regex);
   return matches ? matches[1] : def;
+}
+
+function isLocalhost () {
+  return /\/(127.0.0.1|localhost):\d+\//.test(window.location.href);
 }
 
 document.querySelector(FOCUS_SEL).focus();

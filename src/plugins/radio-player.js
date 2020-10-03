@@ -9,15 +9,15 @@
 const { PluginBase, defaultContainer } = require('../plugin-base');
 
 const RADIO_URL = [
-  'https://www.radio.net/inc/microsite/',
+  'https://www.radio.net/inc/microsite/index.html',
   '?playStation=bbcradio2',
   '&playerWidth=360px&playerHeight=92px',
   '&playerColor=61ce42',
   '&autoplay=false',
   '&apikey=df04ff67dd3339a6fc19c9b8be164d5b5245ae93',
-  '&playerType=web_embedded',
-  '&partnerLogo=null&partnerUrl=null&partnerBacklink=null&partnerName=null&popoutTitle=null&stations=null',
-  '&listText=null&listSubtext=null&showFooter=null&token=null&popupWidth=null&popupHeight=null&iframe=true'
+  '&playerType=web_embedded'
+  // '&partnerLogo=null&partnerUrl=null&partnerBacklink=null&partnerName=null&popoutTitle=null&stations=null',
+  // '&listText=null&listSubtext=null&showFooter=null&token=null&popupWidth=null&popupHeight=null&iframe=true'
 ];
 
 const RADIO_STATIONS = {

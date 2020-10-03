@@ -48,6 +48,8 @@ class ServeFrontendMiddleware extends PluginBase {
       const AUTH = new ChatAuthentication(server, this.logger);
 
       AUTH.setup();
+    } else {
+      this.logger.warn('Auth disabled!');
     }
 
     this.app.use(express.static(PUBLIC_PATH));

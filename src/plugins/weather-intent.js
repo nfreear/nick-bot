@@ -58,6 +58,14 @@ class WeatherIntent extends PluginBase {
         const promise = this.requestFeedToJson(feedUrl);
 
         return promise.then(resp => {
+          if (!resp.ok) {
+            this.logger.error('ERROR fetching weather (A): ' + (resp.statusCode || null));
+            console.error('ERROR:', resp);
+
+            resolve({ answer: 'Problem fetching weather', feedUrl, resp });
+            return;
+          }
+
           const url = resp.rss.channel.link;
           const title = resp.rss.channel.title;
           const observations = resp.rss.channel.item.description;
@@ -72,7 +80,13 @@ class WeatherIntent extends PluginBase {
             - ${match.speed}
             - ${match.visib} `; */
           resolve({ answer, feedUrl, resp });
-        });
+        })
+          .catch(err => {
+            this.logger.error('ERROR fetching weather (B)');
+            this.logger.error(err);
+
+            resolve({ answer: 'Problem fetching weather (B)', feedUrl, err });
+          });
       } else {
         resolve({
           answer: `Can't get weather for '${placeName}' ([Search location at BBC](${BBC_WEATHER_URL}#?q=${placeName})?)`

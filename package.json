@@ -14,6 +14,7 @@
     "start": "node index.js",
     "frontend": "live-server --port=3001 --no-browser --watch=public --open='/public/?speech=cbf'",
     "frontend:zh": "live-server --port=3001 --watch=public --open='/public/?lang=zh-CN'",
+    "corpus:export": "node src/corpus-to-csv.js --all",
     "grep:nlpjs": "grep -n '@nlpjs/' package.json",
     "lint:json": "node test/json-lint.js",
     "fix:js": "semistandard --fix",
@@ -49,6 +50,6 @@
     "semistandard": "^14.2.2"
   },
   "peerDependencies": {
-    "botframework-webchat-root": "https://github.com/microsoft/BotFramework-WebChat.git#v4.8.0"
+    "bf-webchat-root": "https://github.com/Microsoft/BotFramework-WebChat.git#v4.10.1"
   }
 }

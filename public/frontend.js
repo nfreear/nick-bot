@@ -43,13 +43,17 @@ async function launchBot () {
     }
   );
 
+  // https://github.com/microsoft/BotFramework-WebChat/blob/master/packages/component/src/Styles/defaultStyleOptions.js
   const styleOptions = {
     botAvatarInitials: 'Bot',
     userAvatarInitials: USER.initials || 'Jo',
     botAvatarBackgroundColor: '#0063B1',
     userAvatarBackgroundColor: '#0063B1',
     backgroundColor: '#333',
-    accent: 'white'
+    accent: 'white',
+
+    hideUploadButton: true,
+    sendBoxTextWrap: true,
   };
 
   WebChat.renderWebChat(

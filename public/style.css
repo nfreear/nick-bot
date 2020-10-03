@@ -13,10 +13,14 @@ button {
 }
 
 :link:focus,
-button:focus,
-input:focus {
-  outline: 3px solid darkorange;
-  outline-offset: .4rem;
+#webchat button:focus,
+#webchat input:focus,
+#webchat textarea:focus {
+  outline: 3px solid teal; /* Was: darkorange */
+  outline-offset: .45rem;
+}
+#webchat .webchat__icon-button:focus {
+  outline-offset: -3px;
 }
 
 #logout-button {
